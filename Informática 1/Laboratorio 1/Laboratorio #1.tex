@@ -2,19 +2,39 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{multirow}
+
 \usepackage[left=3cm,right=3cm,top=2cm,bottom=3cm]{geometry}
 
 \linespread{1.1}
 
 \begin{document}
 
-\title{Hoja de Trabajo \#1 - Informática 1}
-\author{Jeremy Cáceres y Gabriel Lemus}
-\date{}
-\maketitle
+%\title{Laboratorio \#1 - Informática 1}
+%\author{Jeremy Cáceres y Gabriel Lemus}
+%\date{}
+%\maketitle
+
+\begin{tabular}{l l}
+\multirow{3}{*}{\includegraphics[width=2cm]{../../recursos/logo}} 
+ & \\
+ & \Large Universidad del Istmo de Guatemala \\
+ & \Large Facultad de Ingeniería \\
+ & \Large Informática 1 \\
+\end{tabular}
+\\\\\\
+
+\begin{center}
+	\hrule
+	\vspace{0.5cm}
+	\huge{Laboratorio \#1} \\
+	\vspace{0.1cm}
+    \Large{Jeremy Cáceres y Gabriel Lemus}\\
+    \vspace{0.05cm}
+    \hrulefill
+\end{center}
+\vspace{0.2cm}
 
 \section*{\textbf{Ejercicio \#2 (Abstracción)}}
 \textbf{Dado:}
@@ -27,6 +47,7 @@
 \item Cada movimiento sólo puede ser de 90 grados a lo largo del eje transversal o anteroposterior.
 \item El movimiento no puede realizarse en el eje longitudinal.
 \end{itemize}
+\vspace{0.1cm}
 
 \subsection*{\textbf{\Large Modelo de los dados y sus transiciones como un \emph{grafo}.}}
 \subsubsection*{\textbf{1. \emph{Conjunto} de nodos del \emph{grafo:}}}
@@ -62,8 +83,7 @@
 \noindent$<(1,4),(1,2)>,\ \ \ <(2,3),(3,3)>,$
 
 \noindent$<(1,2),(2,2)>,$
-
-\pagebreak
+\vspace{0.05cm}
 
 \section*{\textbf{Ejercicio \#3}}
 \textbf{• ¿Qué estructura de datos podría representar un lanzamiento de dados?}
