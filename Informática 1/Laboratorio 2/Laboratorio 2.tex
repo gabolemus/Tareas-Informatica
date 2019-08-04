@@ -1,0 +1,112 @@
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{amsthm}
+\usepackage{cancel}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=3cm]{geometry}
+
+\linespread{1.1}
+
+\begin{document}
+
+\begin{tabular}{l l}
+\multirow{3}{*}{\includegraphics[width=2cm]{../../recursos/logo}} 
+ & \\
+ & \LARGE Universidad del Istmo de Guatemala \\
+ & \LARGE Facultad de Ingenieria \\
+ & \LARGE Informatica 1 \\
+\end{tabular}
+\\\\\\
+
+\begin{center}
+	\hrule
+	\vspace{0.5cm}
+	\huge{Laboratorio \#2} \\
+	\vspace{0.1cm}
+    \Large{Jeremy Cáceres y Gabriel Lemus}\\
+    \vspace{0.05cm}
+    \hrulefill
+\end{center}
+\vspace{0.3cm}
+
+\section*{\Large Ejercicio \#1}
+\noindent Demostrar utilizando inducción:
+\[
+        \forall\ n.\ n^3\geq n^2
+\]
+donde $n\in\mathbb{N}$
+\\
+
+\noindent \textbf{\large Caso Base:}\\
+\noindent $n=0$
+
+\begin{eqnarray*}
+0^3 &\geq& 0^2 \\
+0*0*0 &\geq& 0*0 \\
+0 &\geq& 0
+\end{eqnarray*}
+
+\vspace{0.1cm}
+
+\noindent \textbf{\large Caso Inductivo:}\\
+\noindent • $n=n+1$ \\
+\noindent • $(n+1)^3\geq(n+1)^2$ $\rightarrow$ Hipótesis Inductiva \\
+
+\begin{proof}
+
+\begin{eqnarray*}
+(n+1)^3&\geq&(n+1)^2\\
+(n+1)(n+1)(n+1)&\geq&(n+1)(n+1)\\
+(n+1)\cancelto{1}{(n+1)(n+1)}&\geq&\cancelto{1}{(n+1)(n+1)} \\
+n+1&\geq& 1\\
+n&\geq& 0
+\end{eqnarray*}
+
+\end{proof}
+
+
+\section*{\Large Ejercicio \#2}
+\noindent Demostrar utilizando inducción la desigualdad de Bernoulli:
+\[
+        \forall\ n.\ (1+x)^n\geq nx+1
+\]
+\\donde $n\in \mathbb{N}$, $x\in \mathbb{Q}$ y $x\geq -1$
+\\
+\\{\bf Consejo: }Es possible demostrar esto demostrando una propiedad más fuerte
+donde el lado izquierdo es mayor que $nx + 1$ \vspace{1cm}
+
+\noindent \textbf{\large Caso Base:}\\
+\noindent $n=0$
+
+\begin{eqnarray*}
+(1+x)^0 &\geq& (0)(x)+1 \\
+1 &=& 1
+\end{eqnarray*}
+
+\vspace{0.1cm}
+
+\noindent \textbf{\large Caso Inductivo:}\\
+\noindent • $n=n+1$ \\
+\noindent • $(1+x)^{n+1}\geq (n+1)(x)+1$ $\rightarrow$ Hipótesis Inductiva \\
+
+\begin{proof}
+
+\begin{eqnarray*}
+(1+x)^{n+1}&\geq&(n+1)(x)+1 \\
+(1+x)^n(1+x)&\geq&(nx+1)(1+x) \ \ \ \ \ \ \ \ \because(1+x)^n \geq nx+1 \\ 
+(1+x)^n(1+x)&\geq& nx+nx^2+1+x \\
+(1+x)^n(1+x)&\geq& 1+x(n+1)+nx^2 \\
+(1+x)^n(1+x)&\geq& 1+x(n+1) \ \ \ \ \ \ \ \ \ \ \ \ \because n \geq 0, x^2 \geq 0 \ \ \ \ \ \therefore nx^2 \geq 0 \\
+(1+x)^{n+1}&\geq& x(n+1)+1
+\end{eqnarray*}
+
+\end{proof}
+
+
+\end{document}
