@@ -56,7 +56,8 @@ donde $n\in\mathbb{N}$
 
 \noindent \textbf{\large Caso Inductivo:}\\
 \noindent • $n=n+1$ \\
-\noindent • $(n+1)^3\geq(n+1)^2$ $\rightarrow$ Hipótesis Inductiva \\
+\noindent • $ n^3 \geq n^2$ $\rightarrow$ Hipótesis Inductiva \\
+\noindent • \emph{Demostrar que:} $(n+1)^3 \geq (n+1)^2$
 
 \begin{proof}
 
@@ -93,13 +94,14 @@ donde el lado izquierdo es mayor que $nx + 1$ \vspace{1cm}
 
 \noindent \textbf{\large Caso Inductivo:}\\
 \noindent • $n=n+1$ \\
-\noindent • $(1+x)^{n+1}\geq (n+1)(x)+1$ $\rightarrow$ Hipótesis Inductiva \\
+\noindent • $(1+x)^n \geq nx+1$ $\rightarrow$ Hipótesis Inductiva \\
+\noindent • \emph{Demostrar que:} $(1+x)^{n+1} \geq (n+1)(x)+1$ \\
 
 \begin{proof}
 
 \begin{eqnarray*}
-(1+x)^{n+1}&\geq&(n+1)(x)+1 \\
-(1+x)^n(1+x)&\geq&(nx+1)(1+x) \ \ \ \ \ \ \ \ \because(1+x)^n \geq nx+1 \\ 
+(1+x)^{n+1} &\geq& (n+1)(x)+1 \\
+(1+x)^n(1+x)&\geq&(nx+1)(1+x) \ \ \ \ \ \ \ \ \because(1+x)^n \geq nx+1 \ \wedge \ nx+1>n+1 \\ 
 (1+x)^n(1+x)&\geq& nx+nx^2+1+x \\
 (1+x)^n(1+x)&\geq& 1+x(n+1)+nx^2 \\
 (1+x)^n(1+x)&\geq& 1+x(n+1) \ \ \ \ \ \ \ \ \ \ \ \ \because n \geq 0, \ x^2 \geq 0 \ \ \ \ \ \therefore nx^2 \geq 0 \\
