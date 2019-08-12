@@ -1,0 +1,242 @@
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{etoolbox}
+\AtBeginEnvironment{align}{\setcounter{equation}{0}}
+\AtBeginEnvironment{eqnarray}{\setcounter{equation}{0}}
+
+\usepackage{multicol}
+\usepackage{amsthm}
+\usepackage{cancel}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=3cm]{geometry}
+
+\linespread{1.1}
+
+\begin{document}
+
+\begin{tabular}{l l}
+\multirow{3}{*}{\includegraphics[width=2cm]{../../recursos/logo}} 
+ & \\
+ & \LARGE Universidad del Istmo de Guatemala \\
+ & \LARGE Facultad de Ingeniería \\
+ & \LARGE Informática 1 \\
+\end{tabular}
+\\\\\\
+
+\begin{center}
+	\hrule
+	\vspace{0.5cm}
+	\huge{Laboratorio \#3} \\
+	\vspace{0.1cm}
+    \Large{Jeremy Cáceres y Gabriel Lemus}\\
+    \vspace{0.05cm}
+    \hrulefill
+\end{center}
+\vspace{0.05cm}
+
+\section*{Ejercicio \#1}
+\noindent Utilizando la definicion de suma ($\oplus$) para los números naturales unarios, llevar
+a cabo la suma entre tres [$s(s(s(0)))$] y cuatro [$s(s(s(s(0))))$]. Debe elaborar todos
+los pasos de forma explícita. Como referencia, se presenta nuevamente la definición de
+suma para numeros natruales unarios:
+\[
+	n\oplus m := \left\{
+    \begin{array}{l l}
+    	m & \mbox{si } n=o \\
+    	n & \mbox{si } m=o \\
+    	\sigma(i\oplus m) & \mbox{si } n=\sigma(i) \\
+    \end{array}
+    \right.
+\]
+
+\noindent \emph{Demostración:}
+\begin{align}
+\sigma(\sigma(\sigma(0))) \oplus \sigma(\sigma(\sigma(\sigma(0))))& && \text{n\ =\ $\sigma(\sigma(\sigma(0)))$, \ i\ =\ $\sigma(\sigma(0))$} \\
+\sigma[\sigma(\sigma(0)) \oplus \sigma(\sigma(\sigma(\sigma(0))))]& && \text{n\ =\ $\sigma(\sigma(0))$, \ i\ =\ $\sigma(0)$} \\
+\sigma[\sigma[\sigma(0) \oplus \sigma(\sigma(\sigma(\sigma(0))))]]& && \text{n\ =\ $\sigma(0)$, \ i\ =\ $0$} \\
+\sigma[\sigma[\sigma[0 \oplus \sigma(\sigma(\sigma(\sigma(0))))]]]& && \text{n\ =\ $0$ \ \ \ $\therefore 0 \oplus m=m$} \\
+\sigma(\sigma(\sigma(\sigma(\sigma(\sigma(\sigma(0)))))))& && \text{$3+4=7$}
+\end{align}
+
+\section*{Ejercicio \#2}
+\noindent Definir inductivamente una función para multiplicar ($\otimes$) números naturales unarios. \\
+{\bf Consejo: }Puede apoyarse de la definición de suma estudiada durante la clase.
+\\
+\\
+\emph{Definición:}
+\[
+	a\otimes b := \left\{
+    \begin{array}{l l}
+    	0 & \ \mbox{si } a=0 \ \lor \ b=0 \\
+    	a & \ \mbox{si } b=\sigma(0) \\
+        b & \ \mbox{si } a=\sigma(0) \\
+        (a \otimes \sigma(i)) \oplus a & \ \mbox{si } b=\sigma(i) \\
+	\end{array}
+    \right.
+\]
+
+\section*{Ejercicio \#3}
+\noindent Verifique que su definición de multiplicación es correcta multiplicando los siguientes valores:
+\begin{enumerate}
+	\item{$\sigma(\sigma(\sigma(0)))\otimes 0$}
+	\begin{align}
+	\sigma(\sigma(\sigma(0))) &\otimes 0 && \text{a\ =\ $\sigma(\sigma(\sigma(0)))$, b\ =\ $0$} \\
+	&0 && \text{$\therefore \sigma(\sigma(\sigma(0))) \otimes 0 = 0$}
+	\end{align}
+	\\
+	
+	\item{$\sigma(\sigma(\sigma(0)))\otimes \sigma(0)$}
+	\begin{align}
+	\sigma(\sigma(\sigma(0))) &\otimes \sigma(0) && \text{a\ =\ $\sigma(\sigma(\sigma(0)))$, b\ =\ $\sigma(0)$} \\
+	\sigma(\sigma(\sigma(&0))) && \text{$\therefore \ \sigma(\sigma(\sigma(0))) \otimes \sigma(0)=\sigma(\sigma(\sigma(0)))$}
+	\end{align}		
+	\\		
+	
+	\item{$\sigma(\sigma(\sigma(0)))\otimes \sigma(\sigma(0))$}
+	\begin{align}
+	&\sigma(\sigma(\sigma(0))) \otimes \sigma(\sigma(0)) && \text{a\ =\ $\sigma(\sigma(\sigma(0)))$, b\ =\ $\sigma(\sigma(0))$} \\
+	&(\sigma(\sigma(\sigma(0))) \otimes \sigma(0)) \oplus \sigma(\sigma(\sigma(0))) && \text{a\ $\otimes\ \sigma(0)$\ =\ a} \\
+	&\sigma(\sigma(\sigma(0))) \oplus \sigma(\sigma(\sigma(0))) && \text{Definición de la suma.} \\
+	&\sigma(\sigma(\sigma(\sigma(\sigma(\sigma(0)))))) && \therefore 3\times2=6
+	\end{align}		
+	
+\end{enumerate}
+\vspace{0.05cm}
+
+\section*{Ejercicio \#4}
+\noindent Demostrar utilizando inducción:
+\begin{enumerate}
+\item{$a\oplus \sigma(\sigma(0))=\sigma(\sigma(a))$} \\
+\\
+\noindent \textbf{\large Caso Base:} \\
+\noindent • $a=0$
+\begin{proof}
+\begin{eqnarray*}
+0 \oplus \sigma(\sigma(0)) &=& \sigma(\sigma(0)) \\
+\sigma(\sigma(0))&=& \sigma(\sigma(0))
+\end{eqnarray*}
+\end{proof}
+
+\vspace{0.1cm}
+
+\noindent \textbf{\large Caso Inductivo:}\\
+\noindent • $a=\sigma(a)$ \\
+\noindent • \textbf{Hipótesis Inductiva: } $a \oplus \sigma(\sigma(0)) = \sigma(\sigma(a))$ \\
+\noindent • \emph{Demostrar que:} $\sigma(a) \oplus \sigma(\sigma(0)) = \sigma(\sigma(\sigma(a)))$
+
+\begin{proof}
+\begin{align}
+\sigma(a) \oplus \sigma(\sigma(0)) &= \sigma(\sigma(\sigma(a))) && \text{Definición de la suma.}\\
+\sigma[ a \oplus \sigma(\sigma(0))] &= \sigma(\sigma(\sigma(a))) && \text{La suma es conmutativa.}\\
+\sigma[\sigma(\sigma(0)) \oplus a] &= \sigma(\sigma(\sigma(a))) && \text{Definición de la suma.}\\
+\sigma[\sigma[\sigma(0) \oplus a]] &= \sigma(\sigma(\sigma(a))) && \text{Definición de la suma.}\\
+\sigma[\sigma[\sigma[ 0 \oplus a]]] &= \sigma(\sigma(\sigma(a))) && \text{$0+a=a$}\\
+\sigma(\sigma(\sigma(a))) &= \sigma(\sigma(\sigma(a)))
+\end{align}
+\end{proof}	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%Problema2%%%
+
+\item{$a \otimes b = b \otimes a$} \\
+\\
+\noindent \textbf{\large Caso Base:} \\
+\noindent • $a=0$
+\begin{proof}
+\begin{eqnarray*}
+0 \otimes b &=& b \otimes 0 \\
+0 &=& 0
+\end{eqnarray*}
+\end{proof}
+
+\vspace{0.1cm}
+
+\noindent \textbf{\large Caso Inductivo:}\\
+\noindent • $a=\sigma(a)$ \\
+\noindent • \textbf{Hipótesis Inductiva: } $a \otimes b = b \otimes a$ \\
+\noindent • \emph{Demostrar que:} $\sigma(a) \otimes b = b \otimes \sigma(a)$
+
+\begin{proof}
+\begin{align}
+\sigma(a) \otimes b &= b \otimes \sigma(a) && \text{Definición de la multiplicación.}\\
+\sigma(a) \otimes b &= (b \otimes a) \oplus b && \text{Por hipotesis inductiva.} \\
+\sigma(a) \otimes b &= (a \otimes b) \oplus b && \text{Definición de la multiplicación.}\\
+(a \otimes b) \oplus b &= (a \otimes b) \oplus b
+\end{align}
+\end{proof}
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%Problema3%%%
+
+\item{$a \otimes (b \otimes c)=(a\otimes b)\otimes c$} \\
+\\
+\noindent \textbf{\large Caso Base:}\\
+\noindent • $c=0$
+\begin{proof}
+\begin{align*}
+a \otimes (b \otimes 0) &= (a \otimes b) \otimes 0 && \text{i\ =\ a $\otimes$ b}\\
+a \otimes 0 &= i \otimes 0 \\
+0 &= 0
+\end{align*}
+\end{proof}
+
+\vspace{0.1cm}
+
+\noindent \textbf{\large Caso Inductivo:}\\
+\noindent • $c=\sigma(c)$ \\
+\noindent • \textbf{Hipótesis Inductiva: } $a \otimes (b \otimes c)=(a\otimes b)\otimes c$ \\
+\noindent • \emph{Demostrar que:} $a \otimes (b \otimes \sigma(c))=(a \otimes b)\otimes \sigma(c)$
+
+\begin{proof}
+\begin{align}
+a \otimes (b \otimes \sigma(c))&=(a \otimes b)\otimes \sigma(c) && \text{Definición de la multiplicación.} \\
+a \otimes (b \otimes \sigma(c))&=((a \otimes b)\otimes c) \oplus (a \otimes b) && \text{Por hipotesis inductiva.} \\
+a \otimes (b \otimes \sigma(c))&= (a \otimes (b \otimes c)) \oplus (a \otimes b) && \text{La suma es conmutativa.} \\
+a \otimes (b \otimes \sigma(c))&= (a \otimes b) \oplus (a \otimes (b \otimes c)) && \text{La multiplicación es distributiva.} \\
+a \otimes (b \otimes \sigma(c))&= a \otimes (b \oplus (b \otimes c)) && \text{La suma es conmutativa.} \\
+a \otimes (b \otimes \sigma(c))&= a \otimes ((b \otimes c) \oplus b) && \text{Definición de la multiplicación.}\\
+a \otimes (b \otimes \sigma(c))&= a \otimes (b \otimes \sigma(c))
+\end{align}
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%Problema4%%%
+
+\item{$(a\oplus b)\otimes c = (a\otimes c) \oplus (b \otimes c)$} \\
+\\
+\noindent \textbf{\large Caso Base:}\\
+\noindent • $c=0$
+\begin{proof}
+\begin{align*}
+(a \oplus b) \otimes 0 &= (a \otimes 0) \oplus (b \otimes 0) && \text{i\ =\ a\ $\oplus$\ b} \\
+i \otimes 0 &= 0 \oplus 0 \\
+0 &= 0
+\end{align*}
+\end{proof}
+
+\vspace{0.1cm}
+
+\noindent \textbf{\large Caso Inductivo:}\\
+\noindent • $c=\sigma(c)$ \\
+\noindent • \textbf{Hipótesis Inductiva: } $(a\oplus b)\otimes c = (a\otimes c) \oplus (b \otimes c)$ \\
+\noindent • \emph{Demostrar que:} $(a\oplus b)\otimes \sigma(c) = (a\otimes \sigma(c)) \oplus (b \otimes \sigma(c))$
+
+\begin{proof}
+\begin{align*}
+&1)\ (a\oplus b)\otimes \sigma(c) = (a\otimes \sigma(c)) \oplus (b \otimes \sigma(c)) && \text{Definición de la multiplicación.} \\
+&2)\ (a \oplus b) \otimes c \oplus (a \oplus b) = (a\otimes \sigma(c)) \oplus (b \otimes \sigma(c)) && \text{Por hipótesis de inducción.} \\
+&3)\ (a \otimes b) \oplus (b \otimes c) \oplus (a \oplus b) = (a\otimes \sigma(c)) \oplus (b \otimes \sigma(c)) && \text{La suma es asociativa y conmutativa.} \\
+&4)\ ((a \otimes c) \oplus a) \oplus ((b \otimes c) \oplus b) = (a\otimes \sigma(c)) \oplus (b \otimes \sigma(c)) && \text{Definición de la multiplicación.} \\
+&5)\ (a \otimes \sigma(c)) \oplus (b \otimes \sigma(c)) = (a\otimes \sigma(c)) \oplus (b \otimes \sigma(c))
+\end{align*}
+\end{proof}
+
+\end{enumerate}
+
+\end{document}
