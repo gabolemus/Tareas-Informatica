@@ -76,7 +76,7 @@ suma para numeros natruales unarios:
     	0 & \ \mbox{si } a=0 \ \lor \ b=0 \\
     	a & \ \mbox{si } b=\sigma(0) \\
         b & \ \mbox{si } a=\sigma(0) \\
-        (a \otimes \sigma(i)) \oplus a & \ \mbox{si } b=\sigma(i) \\
+        (a \otimes i) \oplus a & \ \mbox{si } b=\sigma(i) \\
 	\end{array}
     \right.
 \]
@@ -198,7 +198,7 @@ a \otimes 0 &= i \otimes 0 \\
 a \otimes (b \otimes \sigma(c))&=(a \otimes b)\otimes \sigma(c) && \text{Definición de la multiplicación.} \\
 a \otimes (b \otimes \sigma(c))&=((a \otimes b)\otimes c) \oplus (a \otimes b) && \text{Por hipotesis inductiva.} \\
 a \otimes (b \otimes \sigma(c))&= (a \otimes (b \otimes c)) \oplus (a \otimes b) && \text{La suma es conmutativa.} \\
-a \otimes (b \otimes \sigma(c))&= (a \otimes b) \oplus (a \otimes (b \otimes c)) && \text{La multiplicación es distributiva.} \\
+a \otimes (b \otimes \sigma(c))&= (a \otimes b) \oplus (a \otimes (b \otimes c)) && \text{La suma es distributiva.} \\
 a \otimes (b \otimes \sigma(c))&= a \otimes (b \oplus (b \otimes c)) && \text{La suma es conmutativa.} \\
 a \otimes (b \otimes \sigma(c))&= a \otimes ((b \otimes c) \oplus b) && \text{Definición de la multiplicación.}\\
 a \otimes (b \otimes \sigma(c))&= a \otimes (b \otimes \sigma(c))
@@ -230,8 +230,8 @@ i \otimes 0 &= 0 \oplus 0 \\
 \begin{proof}
 \begin{align*}
 &1)\ (a\oplus b)\otimes \sigma(c) = (a\otimes \sigma(c)) \oplus (b \otimes \sigma(c)) && \text{Definición de la multiplicación.} \\
-&2)\ (a \oplus b) \otimes c \oplus (a \oplus b) = (a\otimes \sigma(c)) \oplus (b \otimes \sigma(c)) && \text{Por hipótesis de inducción.} \\
-&3)\ (a \otimes b) \oplus (b \otimes c) \oplus (a \oplus b) = (a\otimes \sigma(c)) \oplus (b \otimes \sigma(c)) && \text{La suma es asociativa y conmutativa.} \\
+&2)\ (a \oplus b) \otimes c \oplus (a \oplus b) = (a\otimes \sigma(c)) \oplus (b \otimes \sigma(c)) && \text{Por hipótesis inductiva.} \\
+&3)\ (a \otimes c) \oplus (b \otimes c) \oplus (a \oplus b) = (a\otimes \sigma(c)) \oplus (b \otimes \sigma(c)) && \text{La suma es conmutativa.} \\
 &4)\ ((a \otimes c) \oplus a) \oplus ((b \otimes c) \oplus b) = (a\otimes \sigma(c)) \oplus (b \otimes \sigma(c)) && \text{Definición de la multiplicación.} \\
 &5)\ (a \otimes \sigma(c)) \oplus (b \otimes \sigma(c)) = (a\otimes \sigma(c)) \oplus (b \otimes \sigma(c))
 \end{align*}
