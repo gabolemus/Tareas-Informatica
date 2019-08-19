@@ -1,0 +1,223 @@
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{etoolbox}
+\AtBeginEnvironment{align}{\setcounter{equation}{0}}
+\AtBeginEnvironment{eqnarray}{\setcounter{equation}{0}}
+
+\usepackage{multicol}
+\usepackage{amsthm}
+\usepackage{cancel}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=3cm]{geometry}
+
+\linespread{1.1}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\begin{tabular}{l l}
+\multirow{3}{*}{\includegraphics[width=2cm]{../../recursos/logo}} 
+ & \Large Universidad del Istmo de Guatemala \\
+ & \Large Facultad de Ingeniería \\
+ & \Large Ing. en Sistemas \\
+ & \Large Informática 1 \\
+ & \Large Prof. Ernesto Rodríguez - erodriguez@unis.edu.gt \\
+\end{tabular}
+\\\\
+
+\begin{center}
+	\hrule
+	\vspace{0.5cm}
+	\huge{Corrección del Examen Parcial \#1} \\
+	\vspace{0.1cm}
+    \Large{Jeremy Cáceres y Gabriel Lemus}\\
+    \vspace{0.05cm}
+    \hrulefill
+\end{center}
+\vspace{0.05cm}
+
+\emph{Instrucciones: Responda las preguntas que se le presentan a continuación. Asegúrese de brindar el procedimiento necesario para evaluar el razonamiento que le llevó a la respuesta. Puede hacer uso de cualquier material impreso para este examen. El examen debe resolverse de forma individual. Se le recuerda que la universidad no tolera el plagio y cualquier instancia de plagio será penalizado con la anulación de esta prueba, un reporte académico y la posible suspensión de ayuda financiera.}
+\vspace{0.1cm}
+
+\section*{Ejercicio \#1: Inducción (20\%)}
+\noindent Demuestre las siguientes propiedades utilizando inducción. Puede hacer uso de la aritmética para dichas demostraciones. Asegúrese de indicar claramente el caso base, el caso inductivo, la hipótesis inductiva y cada paso del procedimiento.
+
+\begin{enumerate}
+\item $\forall n \geq 1. \ 2 * n$ es par
+\\\\
+\noindent \textbf{\large Caso Base:} \\
+\noindent • $n=1$
+\begin{proof}
+\begin{eqnarray}
+2 * 1 = 2 \\
+2 \text{ es par}
+\end{eqnarray}
+\end{proof}
+
+\vspace{0.1cm}
+
+\noindent \textbf{\large Caso Inductivo:}\\
+\noindent • $n=n+1$ \\
+\noindent • \textbf{Hipótesis Inductiva: } $2 * n$ es par \\
+\noindent • \emph{Demostrar que:} $2 * (n + 1)$ es par
+
+\begin{proof}
+\begin{align}
+&2 * (n+1) && \text{Multiplicar por $2$.} \\
+&(2*n) + 2 && \text{Sumarle 2 a un número no cambia si es par o no; se puede omitir.} \\
+&2*n && \text{Hipótesis inductiva: 2 * n es par} \\
+&2n \text{ es par}
+\end{align}
+\end{proof}
+
+
+\item $\forall n \geq 4. \ 2^n < n!$, donde $n! = 1 * 2 * 3 * ... * (n-1) * n$
+\\\\
+\noindent \textbf{\large Caso Base:} \\
+\noindent • $n=4$
+\begin{proof}
+\begin{eqnarray}
+2^4 &<& 4! \\
+16 &<& 24
+\end{eqnarray}
+\end{proof}
+
+\vspace{0.1cm}
+
+\noindent \textbf{\large Caso Inductivo:}\\
+\noindent • $n=n+1$ \\
+\noindent • \textbf{Hipótesis Inductiva: } $2^n < n!$ \\
+\noindent • \emph{Demostrar que:} $2^{n+1} < (n+1)!$
+
+\begin{proof}
+\begin{align}
+2^{n+1} &< (n+1)! && \text{Propiedad de los factoriales: $(n+1)! = n! * (n+1)$} \\
+2^{n+1} &< n! * (n+1) && \text{Propiedad de la exponenciación: $2^{n+1} = 2^n * 2$} \\
+2^n * 2 &< n! * (n+1) && \text{\small Usar un valor menor del lado izquierdo cumple con la desigualdad.} \\
+2^n &< n! * (n+1) && \text{\small Usar un valor menor del lado derecho cumple con la desigualdad.} \\
+2^n &< n! && \text{Hipótesis inductiva: $2^n < n!$.} \\
+2^n &< n!
+\end{align}
+\end{proof}
+\end{enumerate}
+\pagebreak
+
+\section*{Ejercicio \#2: Definiciones inductivas (60\%)}
+\noindent Dar una definición inductiva para las siguientes funciones sobre los \emph{números naturales unarios}. Consejo, se le recomienda definir y utilizar la suma y multiplicación de los números naturales unarios:
+
+\begin{enumerate}
+\item La función factorial ($n!$) en donde $n! = 1 \otimes 2 \otimes 3 \otimes ... \otimes (n-1) \otimes n$
+\[
+	n! := \left\{
+    \begin{array}{l l}
+    	1 & \ \mbox{si } n=0 \lor n=1 \\
+    	x! * \sigma(x) & \ \mbox{si } n=\sigma(x) \\
+	\end{array}
+    \right.
+\]
+\vspace{0.5cm}
+
+\item La función resta ($\ominus$) en donde:
+\begin{itemize}
+\item[•] $a \ominus b = 0$ si $a \leq b$
+\item[•] $a \ominus b = a - b$ de lo contrario
+\end{itemize}
+\[
+	a \ominus b := \left\{
+    \begin{array}{l l}
+    	0 & \ \mbox{si } a \leq b \\
+    	a & \ \mbox{si } b = 0 \\
+    	1 & \ \mbox{si } a = \sigma(b) \\
+    	(x \ominus b) \oplus 1 & \ \mbox{si } a=\sigma(x) \\
+	\end{array}
+    \right.
+\]
+\vspace{0.5cm}
+
+\item La función sumatoria $\sum_{i}^{n}$ en donde $\sum_{i}^{n} = i \oplus (i \oplus 1) \oplus ... \oplus (n - 1) \oplus n$. En otras palabras, la suma de los números empezando por $i$ y terminando en $n$.
+\[
+	\sum_{i}^{n} := \left\{
+    \begin{array}{l l}
+    	0 & \ \mbox{si } n = 0 \\
+    	1 & \ \mbox{si } n = 1 \\
+    	\sum_{i}^{x}\ \oplus\ \sigma(x) & \ \mbox{si } n=\sigma(x) \wedge i \leq n\\
+	\end{array}
+    \right.
+\]
+\vspace{0.5cm}
+
+\item La función exponente $a^b$ en donde $a^b = a \otimes a \otimes a ...$ ($b$ veces)
+\[
+	a^b := \left\{
+    \begin{array}{l l}
+    	1 & \ \mbox{si } b = 0 \\
+    	a & \ \mbox{si } b = 1 \\
+    	a \otimes a^x & \ \mbox{si } b = \sigma(x) \\
+	\end{array}
+    \right.
+\]
+\end{enumerate}
+\pagebreak
+
+\section*{Ejercicio \#3: Inducción para números unarios (20\%)}
+\noindent A continuación se presenta la definición de la suma y multiplicación de números unarios:
+\begin{multicols}{2}
+\[
+	a \oplus b := \left\{
+    \begin{array}{l l}
+    	a & \ \mbox{si } b=0 \\
+    	b & \ \mbox{si } a=0 \\
+        1 \oplus (x \oplus b) & \ \mbox{si } a=\sigma(x) \\
+	\end{array}
+    \right.
+\]
+\columnbreak
+\\
+\[
+	a \otimes b := \left\{
+    \begin{array}{l l}
+    	0 & \ \mbox{si } a=0 \ \lor \ b=0 \\
+    	a & \ \mbox{si } b=1 \\
+        b & \ \mbox{si } a=1 \\
+        a \oplus (a \otimes x) & \ \mbox{si } b=\sigma(x) \\
+	\end{array}
+    \right.
+\]
+\end{multicols}
+\noindent Demostrar utilizando inducción que: $2 \otimes a = a \oplus a$. Puede utilizar una definición alterna (pero equivalente) de la suma o multiplicación si lo desea. Recuerde indicar claramente el caso base, el caso inductivo, la hipótesis inductiva y cada paso de la demostración.
+\\\\
+\noindent \textbf{\large Caso Base:} \\
+\noindent • $a=0$
+\begin{proof}
+\begin{eqnarray}
+2 \otimes 0 &=& 0 \oplus 0 \\
+0 &=& 0
+\end{eqnarray}
+\end{proof}
+
+\vspace{0.1cm}
+
+\noindent \textbf{\large Caso Inductivo:}\\
+\noindent • $a=\sigma(a)$ \\
+\noindent • \textbf{Hipótesis Inductiva: } $2 \otimes a = a \oplus a$ \\
+\noindent • \emph{Demostrar que:} $2 \otimes \sigma(a) = \sigma(a) \oplus \sigma(a)$
+
+\begin{proof}
+\begin{align}
+2 \otimes \sigma(a) &= \sigma(a) \oplus \sigma(a) && \text{Definición de la multiplicación.} \\
+2 \oplus (2 \otimes a) &= \sigma(a) \oplus \sigma(a) && \text{Hipótesis Inductiva: $2 \otimes a = a \oplus a$.} \\
+2 \oplus (a \oplus a) &= \sigma(a) \oplus \sigma(a) && \text{Definición de la suma.} \\
+2 \oplus (a \oplus a) &= \sigma(a \oplus \sigma(a)) && \text{La suma es conmutativa.} \\
+2 \oplus (a \oplus a) &= \sigma(\sigma(a) \oplus a) && \text{Definición de la suma.} \\
+2 \oplus (a \oplus a) &= \sigma(\sigma(a \oplus a)) && \text{$\sigma(\sigma(0)) = 2$} \\
+2 \oplus (a \oplus a) &= 2 \oplus (a \oplus a)
+\end{align}
+\end{proof}
+
+\end{document}
