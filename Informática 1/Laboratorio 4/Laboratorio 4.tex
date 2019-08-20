@@ -52,43 +52,42 @@
 
 \section{Ejercicio \#2}
 \begin{enumerate}
-\item{$A:=\{n \in \mathbb{N}\ |\ \exists x \in \mathbb{N}\ .\ n=x/5 $\}}
+\item $A:=\{n \in \mathbb{N}\ |\ n\%5=0 $\}
 
 \item Partiendo de:
 \begin{itemize}
-\item[•] $A:=\{n \in \mathbb{N}\ |\ \exists x \in \mathbb{N}\ .\ n=x/5 $\}
-\item[•] $B:=\{n \in \mathbb{N}\ |\ \exists x \in \mathbb{N}\ .\ n=x/4 $\} \\
+\item[•] $A:=\{n \in \mathbb{N}\ |\ n\%5=0 $\}
+\item[•] $B:=\{n \in \mathbb{N}\ |\ n\%4=0 $\} \\
 
 \item[•]$C:=(A \cap B)$
 \end{itemize}
 
-\item{$D:=\{n \in \mathbb{N}\ |\ \exists x \in \mathbb{N}\ .\ 1<x<n\ \wedge\ n/x$\}}
-%{$D:=\{n \in \mathbb{N}\ |\ \exists x \in \mathbb{N}\ .\ 1<x<n\ \wedge\ mod(n,x)=0$\}}
+\item $D:=\{n \in \mathbb{N}\ |\ \nexists x \in \mathbb{N}\ .\ 1<x<n\ \wedge\ n\%x=0$\}
 
-\item{{$E:=\{e \subset P(\mathbb{N})\ |\ \exists x \in \mathbb{N}\ \wedge\ \exists n \subset e\ .\ n=x/15$\}}}
+\item $E:=\{e \subset P(\mathbb{N})\ |\ \exists x \in \mathbb{N}\ \wedge\ \exists n \subset e\ .\ x\%15=0$\} 
 
 \item{{$F:=\{f \subset P(\mathbb{N})\ |\ \exists x \subset f\ \wedge\ \exists n \subset f\ .\ x+n=42$\}}}
 \end{enumerate}
 
 
 \section{Ejercicio \#3}
-$P:=\{<a,b,c>\ .\ a \in \mathbb{N}\ .\ b \in \mathbb{N}\ .\ c \in \mathbb{N}\ |\ \exists x \in \mathbb{N}\ .\ x>1\ .\ x<a\ \wedge\ x<b\ .\ a/x\ \wedge\ b/x\ .\ c=a*b\ \wedge\ c<30$\}
+$P:=\{ \langle a,b,c \rangle .\ a,\ b,\ c \in \mathbb{N}\ |\ \nexists x_1,\ x_2 \in \mathbb{N}\ .\ x>1\ .\ x<a\ \wedge\ x<b\ .\ a\%x=0\ \wedge\ b\%x=0\ .\ c=a*b\ \wedge\ c<30$\}
 
 
 \section{Ejercicio \#4}
 \begin{enumerate}
-\item $\lambda x \in \mathbb{N}\ .\ x+x=\{<x,\ x+x>\ |\ x \in \mathbb{N}\}$
+\item $A:=\{ \langle x,\ x+x \rangle \ |\ x \in \mathbb{N}\}$
 
 \item Partiendo de:
 \begin{itemize}
-\item[•] $A:=\lambda x \in \mathbb{N}\ .\ true = \{<x,\ true>\ |\ x \in \mathbb{N}\ \wedge\ x/5\}$
-\item[•] $B:=\lambda x \in \mathbb{N}\ .\ false = \{<x,\ false>\ |\ x \in \mathbb{N}\ \wedge\ \neg (x/5)\}$\\
-\item[•] $C:=(A \cap B)$
+\item[•] $B:=\{ \langle x,\ true \rangle \ .\ x \in \mathbb{N}\ |\ x\%5=0\}$
+\item[•] $C:=\{ \langle x,\ false \rangle \ .\ x \in \mathbb{N}\ |\ x\%5 \ne 0 \}$\\
+\item[•] $D:=(A \cup B)$
 \end{itemize}
 
-\item $f \circ g \in P(\mathbb{N})$
+\item $(f \circ g) \in P(\mathbb{N})$
 
-\item $\lambda x \in \mathbb{N}\ .\ f(g(x)) = \{<x,\ f(g(x))>\ |\ x \in \mathbb{N}\ \wedge\ f(x) \in \mathbb{N}\ \wedge\ g(x) \subset f(x)\}$
+\item $E:=\{ \langle x,\ f(g(x)) \rangle \ |\ x \in \mathbb{N}\ \wedge\ f(x) \in \mathbb{N}\ \wedge\ g(x) \subset f(x)\}$
 \end{enumerate}
 
 
@@ -96,7 +95,7 @@ $P:=\{<a,b,c>\ .\ a \in \mathbb{N}\ .\ b \in \mathbb{N}\ .\ c \in \mathbb{N}\ |\
 
 \begin{enumerate}
 \item $f(x)=x^2 \ \rightarrow \ \ $\text{Surjectiva}
-\item $g(x)=\frac{1}{cos(x-1)} \ \rightarrow \ \ $\text{Injectiva}
+\item $g(x)=\frac{1}{cos(x-1)} \ \rightarrow \ \ $\text{No es ninguna}
 \item $h(x)=2x \ \rightarrow \ \ $\text{Bijectiva}
 \item $w(x)=x+1 \ \rightarrow \ \ $\text{Bijectiva}
 \end{enumerate}
@@ -104,10 +103,10 @@ $P:=\{<a,b,c>\ .\ a \in \mathbb{N}\ .\ b \in \mathbb{N}\ .\ c \in \mathbb{N}\ |\
 
 \section{Ejercicio \#6}
 \begin{enumerate}
-\item $B_1 := \{<a,\ b>\ |\ a \in \mathbb{N}\ .\ b \in \mathbb{N}\ .\ \forall x \in \mathbb{N}\ .\ a=2x\ \wedge\ a>0\ \wedge\ b>0\}$
-\item $B_{2a} := \{<a,\ b>\ |\ a \in \mathbb{N}\ .\ b \in \mathbb{N}\ .\ \forall x \in \mathbb{N}\ .\ a=(2x+1)\ \wedge\ b>0\}$
-\item $B_2 := \{<a,\ b>\ |\ a \in \mathbb{N}\ .\ b \in \mathbb{Z}\ .\ \forall x \in \mathbb{N}\ .\ a=(2x+1)\ \wedge\ b<0\}$
-\item $B := \{<a,\ b>\ |\ a \in \mathbb{N}\ .\ b \in \mathbb{Z}\}$
+\item $B_1 := \{ \langle a,\ b \rangle .\ a,\ b \in \mathbb{N}\ |\ a\%2=0\ \wedge\ a>0\ .\ b>0\}$
+\item $B_{2a} := \{ \langle a,\ b \rangle .\ a,\ b \in \mathbb{N}\ |\ a\%2 \ne 0\ \wedge\ a>0\ .\ b>0\}$
+\item $B_2 := \{ \langle a,\ b \rangle .\ a,\ b \in \mathbb{N}\ |\ a\%2 \ne 0\ \wedge\ a>0\ .\ b<0\}$
+\item $B := \{ \langle a,\ b \rangle\ |\ a \in \mathbb{N}\ .\ b \in \mathbb{Z}\} \equiv (\{ \langle0,\ 0 \rangle \} \cup B_1 \cup B_2)$
 \end{enumerate}
 
 \end{document}
