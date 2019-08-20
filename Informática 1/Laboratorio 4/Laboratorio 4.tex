@@ -1,0 +1,113 @@
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{etoolbox}
+\AtBeginEnvironment{align}{\setcounter{equation}{0}}
+\AtBeginEnvironment{eqnarray}{\setcounter{equation}{0}}
+
+\usepackage{multicol}
+\usepackage{amsthm}
+\usepackage{cancel}
+\usepackage[left=2.3cm,right=2.3cm,top=2cm,bottom=3cm]{geometry}
+
+\linespread{1.1}
+
+\begin{document}
+
+\begin{tabular}{l l}
+\multirow{3}{*}{\includegraphics[width=2cm]{../../recursos/logo}} 
+ & \\
+ & \LARGE Universidad del Istmo de Guatemala \\
+ & \LARGE Facultad de Ingeniería \\
+ & \LARGE Informática 1 \\
+\end{tabular}
+\\\\\\
+
+\begin{center}
+	\hrule
+	\vspace{0.5cm}
+	\huge{Laboratorio \#4} \\
+	\vspace{0.1cm}
+    \Large{Jeremy Cáceres y Gabriel Lemus}\\
+    \vspace{0.05cm}
+    \hrulefill
+\end{center}
+\vspace{0.05cm}
+
+\section{Ejercicio \#1}
+\begin{itemize}
+\item[•] ($a \equiv d$) $:\Leftrightarrow$ $a:=\{1,2,4,8,16,32,64\} \equiv d:=\{n\in\mathbb{N}\ |\ \exists i\in\mathbb{N}\ .\ n=2^i\wedge n<100 \}$
+
+\item[•] ($b \equiv f$) $:\Leftrightarrow$ $b:=\{n\ \in \mathbb{N}\ |\ \exists x \in \mathbb{N}\ .\ x=n/5 \} \equiv f:=\{ n\in\mathbb{N}\ |\ \exists x\in \mathbb{N}\ .\ n=x+x+x+x+x \}$
+
+\item[•] ($c \equiv e$) $:\Leftrightarrow$ $c:=\{n\in \mathbb{N}\ |\ \exists x\in\mathbb{N}\ .\ n=x*x \} \equiv e:=\{ n\in\mathbb{N}\ |\ \exists x\in \mathbb{N}\ .\ x=\sqrt{n} \}$
+\end{itemize}
+
+
+\section{Ejercicio \#2}
+\begin{enumerate}
+\item{$A:=\{n \in \mathbb{N}\ |\ \exists x \in \mathbb{N}\ .\ n=x/5 $\}}
+
+\item Partiendo de:
+\begin{itemize}
+\item[•] $A:=\{n \in \mathbb{N}\ |\ \exists x \in \mathbb{N}\ .\ n=x/5 $\}
+\item[•] $B:=\{n \in \mathbb{N}\ |\ \exists x \in \mathbb{N}\ .\ n=x/4 $\} \\
+
+\item[•]$C:=(A \cap B)$
+\end{itemize}
+
+\item{$D:=\{n \in \mathbb{N}\ |\ \exists x \in \mathbb{N}\ .\ 1<x<n\ \wedge\ n/x$\}}
+%{$D:=\{n \in \mathbb{N}\ |\ \exists x \in \mathbb{N}\ .\ 1<x<n\ \wedge\ mod(n,x)=0$\}}
+
+\item{{$E:=\{e \subset P(\mathbb{N})\ |\ \exists x \in \mathbb{N}\ \wedge\ \exists n \subset e\ .\ n=x/15$\}}}
+
+\item{{$F:=\{f \subset P(\mathbb{N})\ |\ \exists x \subset f\ \wedge\ \exists n \subset f\ .\ x+n=42$\}}}
+\end{enumerate}
+
+
+\section{Ejercicio \#3}
+$P:=\{<a,b,c>\ .\ a \in \mathbb{N}\ .\ b \in \mathbb{N}\ .\ c \in \mathbb{N}\ |\ \exists x \in \mathbb{N}\ .\ x>1\ .\ x<a\ \wedge\ x<b\ .\ a/x\ \wedge\ b/x\ .\ c=a*b\ \wedge\ c<30$\}
+
+
+\section{Ejercicio \#4}
+\begin{enumerate}
+\item $\lambda x \in \mathbb{N}\ .\ x+x=\{<x,\ x+x>\ |\ x \in \mathbb{N}\}$
+
+\item Partiendo de:
+\begin{itemize}
+\item[•] $A:=\lambda x \in \mathbb{N}\ .\ true = \{<x,\ true>\ |\ x \in \mathbb{N}\ \wedge\ x/5\}$
+\item[•] $B:=\lambda x \in \mathbb{N}\ .\ false = \{<x,\ false>\ |\ x \in \mathbb{N}\ \wedge\ \neg (x/5)\}$\\
+\item[•] $C:=(A \cap B)$
+\end{itemize}
+
+\item $f \circ g \in P(\mathbb{N})$
+
+\item $\lambda x \in \mathbb{N}\ .\ f(g(x)) = \{<x,\ f(g(x))>\ |\ x \in \mathbb{N}\ \wedge\ f(x) \in \mathbb{N}\ \wedge\ g(x) \subset f(x)\}$
+\end{enumerate}
+
+
+\section{Ejercicio \#5}
+
+\begin{enumerate}
+\item $f(x)=x^2 \ \rightarrow \ \ $\text{Surjectiva}
+\item $g(x)=\frac{1}{cos(x-1)} \ \rightarrow \ \ $\text{Injectiva}
+\item $h(x)=2x \ \rightarrow \ \ $\text{Bijectiva}
+\item $w(x)=x+1 \ \rightarrow \ \ $\text{Bijectiva}
+\end{enumerate}
+
+
+\section{Ejercicio \#6}
+\begin{enumerate}
+\item $B_1 := \{<a,\ b>\ |\ a \in \mathbb{N}\ .\ b \in \mathbb{N}\ .\ \forall x \in \mathbb{N}\ .\ a=2x\ \wedge\ a>0\ \wedge\ b>0\}$
+\item $B_{2a} := \{<a,\ b>\ |\ a \in \mathbb{N}\ .\ b \in \mathbb{N}\ .\ \forall x \in \mathbb{N}\ .\ a=(2x+1)\ \wedge\ b>0\}$
+\item $B_2 := \{<a,\ b>\ |\ a \in \mathbb{N}\ .\ b \in \mathbb{Z}\ .\ \forall x \in \mathbb{N}\ .\ a=(2x+1)\ \wedge\ b<0\}$
+\item $B := \{<a,\ b>\ |\ a \in \mathbb{N}\ .\ b \in \mathbb{Z}\}$
+\end{enumerate}
+
+\end{document}
