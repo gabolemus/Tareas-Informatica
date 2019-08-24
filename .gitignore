@@ -6,4 +6,4 @@
 *.synctex.gz
 *.bak
 node_modules/
-elm-stuff/
+elm-stuff/*
