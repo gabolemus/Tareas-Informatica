@@ -5,4 +5,5 @@
 *.out
 *.synctex.gz
 *.bak
-**/node_modules/*
+*.json
+node_modules/
