@@ -1,8 +1,8 @@
-module Main exposing (esPrimo, fibonacci, nPrimos, primos)
+module Main exposing (esPrimo, fibonacci, primos, nPrimos)
 
 --Ejercicio 2
 checkIfPrime : Int -> Int -> Bool
-checkIfPrime n x =
+checkIfPrime x n =
     if x <= 1 then
         False
 
@@ -16,11 +16,11 @@ checkIfPrime n x =
         False
 
     else
-        checkIfPrime (n + 1) x
+        checkIfPrime x (n + 1)
 
 esPrimo : Int -> Bool
 esPrimo x =
-    checkIfPrime 2 x
+    checkIfPrime x 2
 
 
 
@@ -54,15 +54,15 @@ primos x =
 
 
 --Ejercicio 5
-count n x =
-    if n == 0 then
+count x n =
+    if x == 0 then
         []
 
-    else if esPrimo x == False then
-        count n (x + 1)
+    else if esPrimo n == False then
+        count x (n + 1)
 
     else
-        x :: count (n - 1) (x + 1)
+        n :: count (x - 1) (n + 1)
 
 nPrimos : Int -> List Int
 nPrimos x =
