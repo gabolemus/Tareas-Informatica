@@ -5,7 +5,6 @@
 *.out
 *.synctex.gz
 *.bak
-node_modules/
-*.elmi
-*.elmo
-*.dat
+*node_modules/
+*/elm-stuff/*
+elm-stuff/*
