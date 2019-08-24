@@ -1,29 +1,31 @@
-module Main exposing (..)
+module Main exposing (esPrimo, fibonacci, primos, nPrimos)
 
 --Ejercicio 2
-primo div x =
-    if x == 1 then
+checkIfPrime : Int -> Int -> Bool
+checkIfPrime n x =
+    if x <= 1 then
         False
 
     else if x == 2 then
         True
 
-    else if modBy div x == 0 then
-        False
-
-    else if div == (x - 1) then
+    else if x == n then
         True
 
+    else if modBy n x == 0 then
+        False
+
     else
-        primo (div + 1) x
+        checkIfPrime (n + 1) x
 
 esPrimo : Int -> Bool
 esPrimo x =
-    primo 2 x
+    checkIfPrime 2 x
 
 
 
 --Ejercicio 3
+fibonacci : Int -> Int
 fibonacci x =
     case x of
         0 ->
@@ -39,29 +41,29 @@ fibonacci x =
 
 --Ejercicio 4
 primos : Int -> List Int
-primos n =
-    if n < 1 then
+primos x =
+    if x <= 1 then
         []
 
-    else if esPrimo n == False then
-        primos (n - 1)
+    else if esPrimo x == False then
+        primos (x - 1)
 
     else
-        n :: primos (n - 1)
+        x :: primos (x - 1)
 
 
 
 --Ejercicio 5
-count ( n, y ) =
+count n x =
     if n == 0 then
         []
 
-    else if esPrimo y == False then
-        count ( n, y + 1 )
+    else if esPrimo x == False then
+        count n (x + 1)
 
     else
-        y :: count ( n - 1, y + 1 )
+        x :: count (n - 1) (x + 1)
 
 nPrimos : Int -> List Int
-nPrimos n =
-    count ( n, 2 )
+nPrimos x =
+    count x 2
