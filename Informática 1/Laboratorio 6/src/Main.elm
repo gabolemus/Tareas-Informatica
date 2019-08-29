@@ -1,4 +1,4 @@
-module Main exposing (..)
+module Main exposing (iFilter, filter, iZipWith, zipWith)
 
 --Ejercicio 1
 iFilter : Int -> List Int -> List Int
