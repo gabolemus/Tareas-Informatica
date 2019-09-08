@@ -45,7 +45,6 @@ filter func nx =
             else
                 filter func bs
 
-
 invsPop : List Int -> List Int
 invsPop nx =
     case nx of
