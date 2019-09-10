@@ -1,4 +1,4 @@
-module Main exposing (iFilter, filter, iZipWith, zipWith)
+module Main exposing (iFilter, filter, zipWith, iZipWith)
 
 --Ejercicio 1
 iFilter : Int -> List Int -> List Int
@@ -67,10 +67,10 @@ iZipWith nx ny =
             []
 
         ( a, [] ) ->
-            a
+            []
 
         ( [], b ) ->
-            b
+            []
 
         ( x :: lx, y :: ly ) ->
             if List.length nx == List.length ny then
@@ -92,10 +92,10 @@ zipWith func nx ny =
             []
 
         ( n :: ns, [] ) ->
-            func n 0 :: zipWith func ns ny
+            []
 
         ( [], m :: ms ) ->
-            func 0 m :: zipWith func nx ms
+            []
 
         ( x :: lx, y :: ly ) ->
             if List.length nx == List.length ny then
