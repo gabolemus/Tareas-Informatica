@@ -48,9 +48,14 @@ sum x =
         Nodo centro izquierda derecha ->
             centro + sum izquierda + sum derecha
 
+
+
 --Ejercicio 5
 foldTree : (Int -> Int -> Int -> Int) -> Int -> Arbol -> Int
 foldTree f num tree =
     case tree of
-        Vacio -> num
-        Nodo centro izquierda derecha -> f (centro) (foldTree f num izquierda) (foldTree f num derecha)
+        Vacio ->
+            num
+
+        Nodo centro izquierda derecha ->
+            f centro (foldTree f num izquierda) (foldTree f num derecha)
