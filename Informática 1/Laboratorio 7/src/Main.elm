@@ -49,24 +49,8 @@ sum x =
             centro + sum izquierda + sum derecha
 
 --Ejercicio 5
-
-{-
-fold elemento vacio xs =
-    case xs of
-        [] -> vacio
-        b :: bs -> elemento b (fold elemento vacio bs)
--}
-
 foldTree : (Int -> Int -> Int -> Int) -> Int -> Arbol -> Int
 foldTree f num tree =
     case tree of
-        Vacio -> 0
+        Vacio -> num
         Nodo centro izquierda derecha -> f (centro) (foldTree f num izquierda) (foldTree f num derecha)
-
-suma : Int -> Int -> Int
-suma x y = x + y
-
-foldTreeF f num tree =
-    case tree of
-        Vacio -> Vacio
-        Nodo centro izquierda derecha -> Nodo (f num centro) (foldTreeF f num izquierda) (foldTreeF f num derecha)
