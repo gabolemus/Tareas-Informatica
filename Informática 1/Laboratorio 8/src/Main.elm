@@ -1,7 +1,9 @@
 module Main exposing (..)
 
 --Ejercicio 1
-type Arbol a = Vacio | Nodo a (Arbol a) (Arbol a)
+type Arbol a
+    = Vacio
+    | Nodo a (Arbol a) (Arbol a)
 
 
 
@@ -26,15 +28,14 @@ filtrar f tree =
 
         Nodo centro izquierda derecha ->
             if f centro then
-                centro :: List.append (filtrar f izquierda) (filtrar f derecha)
+                centro :: (filtrar f izquierda ++ filtrar f derecha)
 
             else
-                List.append (filtrar f izquierda) (filtrar f derecha)
+                filtrar f izquierda ++ filtrar f derecha
 
 
 
 --Ejercicio 4
---foldTree : (a -> a -> b -> a) -> a -> Arbol b -> a
 foldTree : (a -> b -> b -> b) -> b -> Arbol a -> b
 foldTree f element tree =
     case tree of
@@ -45,18 +46,14 @@ foldTree f element tree =
             f centro (foldTree f element izquierda) (foldTree f element derecha)
 
 
+
 --Ejercicio 5
 filtrarFold : (a -> Bool) -> Arbol a -> List a
 filtrarFold f tree =
-    case tree of
-        Vacio -> []
+    let
+        (Nodo centro izquierda derecha) = tree
 
-        Nodo centro izquierda derecha ->
-            foldTree f tree
-
-
-
-l1 =
-    Nodo 1
-        (Nodo 2 (Nodo 4 (Nodo 8 Vacio Vacio) (Nodo 9 Vacio Vacio)) (Nodo 5 (Nodo 10 Vacio Vacio) (Nodo 11 Vacio Vacio)))
-        (Nodo 3 (Nodo 6 (Nodo 12 Vacio Vacio) (Nodo 13 Vacio Vacio)) (Nodo 7 (Nodo 14 Vacio Vacio) (Nodo 15 Vacio Vacio)))
+        aux = if f centro then centro :: (aux f izquierda ++ aux f derecha)
+            else aux f izquierda ++ aux f derecha
+    in
+        foldTree aux [] tree
