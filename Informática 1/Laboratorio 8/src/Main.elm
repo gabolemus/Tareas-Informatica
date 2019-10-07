@@ -47,13 +47,13 @@ foldTree f element tree =
 
 
 
---Ejercicio 5
-filtrarFold : (a -> Bool) -> Arbol a -> List a
+-- --Ejercicio 5
+-- filtrarFold : (a -> Bool) -> Arbol a -> List a
 filtrarFold f tree =
     let
-        (Nodo centro izquierda derecha) = tree
-
-        aux = if f centro then centro :: (aux f izquierda ++ aux f derecha)
-            else aux f izquierda ++ aux f derecha
+        inicial = []
+        combinacion derecha izquierda valor = 
+            if f valor then valor :: (derecha ++ izquierda)
+            else (derecha ++ izquierda)
     in
-        foldTree aux [] tree
+        foldTree combinacion inicial tree
