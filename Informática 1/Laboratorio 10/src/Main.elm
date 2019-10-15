@@ -5,24 +5,10 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 
-type alias Model =
-    { number : String
-    , expression : List String
-    , result : String
-    }
-
-
-type Msg
-    = Concat String
-    | Sumar
-    | Multiplicar
-    | Resetear
-    | Calcular
-
 
 strToInt : String -> Int
 strToInt num =
-    Maybe.withDefault 0 (String.toInt num)
+    String.toInt num |> Maybe.withDefault 0
 
 listToString : List String -> String
 listToString list =
@@ -100,6 +86,21 @@ evaluate list =
     combineExpression list |> evaluateMultiplication |> evaluateAddition |> firstElement
 
 
+type alias Model =
+    { number : String
+    , expression : List String
+    , result : String
+    }
+
+
+type Msg
+    = Concat String
+    | Sumar
+    | Multiplicar
+    | Resetear
+    | Calcular
+
+
 init : Model
 init =
     Model "0" [ "0" ] "0"
@@ -110,13 +111,13 @@ update msg model =
     case msg of
         Concat x ->
             if model.number == "0" then
-                Model x [ x ] "0"
+                Model x [x] "0"
 
             else if model.number == model.result then
-                Model x [ x ] (model.result)
+                Model x [x] (model.result)
 
             else
-                Model (model.number ++ x) (model.expression ++ [ x ]) (model.result)
+                Model (model.number ++ x) (model.expression ++ [x]) (model.result)
 
         Sumar ->
             Model (model.number ++ "+") (model.expression ++ [ "+" ]) (model.result)
