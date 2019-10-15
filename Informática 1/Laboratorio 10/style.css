@@ -1,0 +1,98 @@
+.main-div{
+    text-align: center;
+}
+
+.calculator{
+    background-color: rgb(151, 151, 151);
+    color: #fff;
+    border: 10px rgb(88, 88, 88) solid;
+    border-color: grey solid;
+    border-radius: 7px;
+    padding: 20px;
+    margin: 20px auto;
+    height: 350px;
+    width: 275px;
+}
+
+.resultado{
+    background-color: rgb(139, 187, 241);
+    color: rgb(48, 47, 47);
+    position: relative;
+    height: 65px;
+    margin: 10px 5px 0 5px;
+    border-radius: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    text-align: left;
+}
+
+.resultado div:first-child{
+    position: relative;
+    top: 3px;
+    left: 5px;
+}
+
+.resultado div:last-child{
+    text-align: right;
+    position: relative;
+    top: 13px;
+    right: 5px;
+}
+
+.buttons{
+    text-align: left;
+    position: relative;
+    left: 15px;
+    top: 50px;
+}
+
+.numButton{
+    background-color: #333;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    margin: 5px;
+    width: 45px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+}
+
+.numButton:hover{
+    background: rgb(11, 175, 38);
+    color: white;
+}
+
+.opButton{
+    background-color: rgb(224, 141, 46);
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    margin-left: 25px;
+    width: 50px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+}
+
+.opButton:hover{
+    background: rgb(28, 97, 177);
+    color: white;
+}
+
+.resetButton{
+    background-color: rgb(255, 255, 255);
+    color: rgb(53, 53, 53);;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    margin-left: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    width: 100px;
+}
+
+.resetButton:hover{
+    background: rgb(110, 86, 216);
+    color: #fff;
+}

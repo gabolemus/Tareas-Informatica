@@ -2,7 +2,8 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Main</title>
+  <title>Calculadora</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -4321,8 +4322,8 @@ function _Browser_load(url)
 	}));
 }
 var author$project$Main$Model = F3(
-	function (number, listOfResults, result) {
-		return {listOfResults: listOfResults, number: number, result: result};
+	function (number, expression, result) {
+		return {expression: expression, number: number, result: result};
 	});
 var elm$core$Basics$EQ = {$: 'EQ'};
 var elm$core$Basics$LT = {$: 'LT'};
@@ -4415,8 +4416,7 @@ var elm$core$Basics$True = {$: 'True'};
 var elm$core$Basics$eq = _Utils_equal;
 var elm$core$Basics$or = _Basics_or;
 var author$project$Main$isNotOperator = function (str) {
-	var x = str;
-	return ((x === '+') || (x === '*')) ? false : true;
+	return ((str === '+') || (str === 'x')) ? false : true;
 };
 var elm$core$Basics$and = _Basics_and;
 var elm$core$Basics$apR = F2(
@@ -4555,7 +4555,7 @@ var author$project$Main$evaluateMultiplication = function (list) {
 				var _n1 = list.b;
 				var y = _n1.a;
 				var xys = _n1.b;
-				if (y === '*') {
+				if (y === 'x') {
 					var $temp$list = A2(
 						elm$core$List$cons,
 						elm$core$String$fromInt(
@@ -4598,32 +4598,32 @@ var author$project$Main$update = F2(
 					x,
 					_List_fromArray(
 						[x]),
-					'0') : A3(
+					model.result) : A3(
 					author$project$Main$Model,
 					_Utils_ap(model.number, x),
 					_Utils_ap(
-						model.listOfResults,
+						model.expression,
 						_List_fromArray(
 							[x])),
-					'0'));
+					model.result));
 			case 'Sumar':
 				return A3(
 					author$project$Main$Model,
 					model.number + '+',
 					_Utils_ap(
-						model.listOfResults,
+						model.expression,
 						_List_fromArray(
 							['+'])),
-					'0');
+					model.result);
 			case 'Multiplicar':
 				return A3(
 					author$project$Main$Model,
-					model.number + '*',
+					model.number + 'x',
 					_Utils_ap(
-						model.listOfResults,
+						model.expression,
 						_List_fromArray(
-							['*'])),
-					'0');
+							['x'])),
+					model.result);
 			case 'Resetear':
 				return A3(
 					author$project$Main$Model,
@@ -4634,9 +4634,9 @@ var author$project$Main$update = F2(
 			default:
 				return A3(
 					author$project$Main$Model,
-					author$project$Main$evaluate(model.listOfResults),
-					model.listOfResults,
-					author$project$Main$evaluate(model.listOfResults));
+					author$project$Main$evaluate(model.expression),
+					model.expression,
+					author$project$Main$evaluate(model.expression));
 		}
 	});
 var author$project$Main$Calcular = {$: 'Calcular'};
@@ -5057,6 +5057,15 @@ var elm$html$Html$button = _VirtualDom_node('button');
 var elm$html$Html$div = _VirtualDom_node('div');
 var elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var elm$html$Html$text = elm$virtual_dom$VirtualDom$text;
+var elm$json$Json$Encode$string = _Json_wrap;
+var elm$html$Html$Attributes$stringProperty = F2(
+	function (key, string) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			elm$json$Json$Encode$string(string));
+	});
+var elm$html$Html$Attributes$class = elm$html$Html$Attributes$stringProperty('className');
 var elm$virtual_dom$VirtualDom$Normal = function (a) {
 	return {$: 'Normal', a: a};
 };
@@ -5077,180 +5086,253 @@ var elm$html$Html$Events$onClick = function (msg) {
 var author$project$Main$view = function (model) {
 	return A2(
 		elm$html$Html$div,
-		_List_Nil,
+		_List_fromArray(
+			[
+				elm$html$Html$Attributes$class('main-div')
+			]),
 		_List_fromArray(
 			[
 				A2(
-				elm$html$Html$button,
-				_List_fromArray(
-					[
-						elm$html$Html$Events$onClick(
-						author$project$Main$Concat('9'))
-					]),
-				_List_fromArray(
-					[
-						elm$html$Html$text('9')
-					])),
-				A2(
-				elm$html$Html$button,
-				_List_fromArray(
-					[
-						elm$html$Html$Events$onClick(
-						author$project$Main$Concat('8'))
-					]),
-				_List_fromArray(
-					[
-						elm$html$Html$text('8')
-					])),
-				A2(
-				elm$html$Html$button,
-				_List_fromArray(
-					[
-						elm$html$Html$Events$onClick(
-						author$project$Main$Concat('7'))
-					]),
-				_List_fromArray(
-					[
-						elm$html$Html$text('7')
-					])),
-				A2(
-				elm$html$Html$button,
-				_List_fromArray(
-					[
-						elm$html$Html$Events$onClick(
-						author$project$Main$Concat('6'))
-					]),
-				_List_fromArray(
-					[
-						elm$html$Html$text('6')
-					])),
-				A2(
-				elm$html$Html$button,
-				_List_fromArray(
-					[
-						elm$html$Html$Events$onClick(
-						author$project$Main$Concat('5'))
-					]),
-				_List_fromArray(
-					[
-						elm$html$Html$text('5')
-					])),
-				A2(
-				elm$html$Html$button,
-				_List_fromArray(
-					[
-						elm$html$Html$Events$onClick(
-						author$project$Main$Concat('4'))
-					]),
-				_List_fromArray(
-					[
-						elm$html$Html$text('4')
-					])),
-				A2(
-				elm$html$Html$button,
-				_List_fromArray(
-					[
-						elm$html$Html$Events$onClick(
-						author$project$Main$Concat('3'))
-					]),
-				_List_fromArray(
-					[
-						elm$html$Html$text('3')
-					])),
-				A2(
-				elm$html$Html$button,
-				_List_fromArray(
-					[
-						elm$html$Html$Events$onClick(
-						author$project$Main$Concat('2'))
-					]),
-				_List_fromArray(
-					[
-						elm$html$Html$text('2')
-					])),
-				A2(
-				elm$html$Html$button,
-				_List_fromArray(
-					[
-						elm$html$Html$Events$onClick(
-						author$project$Main$Concat('1'))
-					]),
-				_List_fromArray(
-					[
-						elm$html$Html$text('1')
-					])),
-				A2(
-				elm$html$Html$button,
-				_List_fromArray(
-					[
-						elm$html$Html$Events$onClick(
-						author$project$Main$Concat('0'))
-					]),
-				_List_fromArray(
-					[
-						elm$html$Html$text('0')
-					])),
-				A2(
-				elm$html$Html$button,
-				_List_fromArray(
-					[
-						elm$html$Html$Events$onClick(author$project$Main$Sumar)
-					]),
-				_List_fromArray(
-					[
-						elm$html$Html$text('+')
-					])),
-				A2(
-				elm$html$Html$button,
-				_List_fromArray(
-					[
-						elm$html$Html$Events$onClick(author$project$Main$Multiplicar)
-					]),
-				_List_fromArray(
-					[
-						elm$html$Html$text('*')
-					])),
-				A2(
-				elm$html$Html$button,
-				_List_fromArray(
-					[
-						elm$html$Html$Events$onClick(author$project$Main$Calcular)
-					]),
-				_List_fromArray(
-					[
-						elm$html$Html$text('=')
-					])),
-				A2(
-				elm$html$Html$button,
-				_List_fromArray(
-					[
-						elm$html$Html$Events$onClick(author$project$Main$Resetear)
-					]),
-				_List_fromArray(
-					[
-						elm$html$Html$text('Resetear')
-					])),
-				A2(
 				elm$html$Html$div,
-				_List_Nil,
 				_List_fromArray(
 					[
-						elm$html$Html$text(
-						author$project$Main$listToString(model.listOfResults))
-					])),
-				A2(
-				elm$html$Html$div,
-				_List_Nil,
+						elm$html$Html$Attributes$class('calculator')
+					]),
 				_List_fromArray(
 					[
-						elm$html$Html$text('=')
-					])),
-				A2(
-				elm$html$Html$div,
-				_List_Nil,
-				_List_fromArray(
-					[
-						elm$html$Html$text(model.result)
+						A2(
+						elm$html$Html$div,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$class('resultado')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								elm$html$Html$div,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text(
+										author$project$Main$listToString(model.expression))
+									])),
+								A2(
+								elm$html$Html$div,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text(model.result)
+									]))
+							])),
+						A2(
+						elm$html$Html$div,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$class('buttons')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								elm$html$Html$div,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('7-9x')
+									]),
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$button,
+										_List_fromArray(
+											[
+												elm$html$Html$Events$onClick(
+												author$project$Main$Concat('7')),
+												elm$html$Html$Attributes$class('numButton')
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text('7')
+											])),
+										A2(
+										elm$html$Html$button,
+										_List_fromArray(
+											[
+												elm$html$Html$Events$onClick(
+												author$project$Main$Concat('8')),
+												elm$html$Html$Attributes$class('numButton')
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text('8')
+											])),
+										A2(
+										elm$html$Html$button,
+										_List_fromArray(
+											[
+												elm$html$Html$Events$onClick(
+												author$project$Main$Concat('9')),
+												elm$html$Html$Attributes$class('numButton')
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text('9')
+											])),
+										A2(
+										elm$html$Html$button,
+										_List_fromArray(
+											[
+												elm$html$Html$Events$onClick(author$project$Main$Multiplicar),
+												elm$html$Html$Attributes$class('opButton')
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text('x')
+											]))
+									])),
+								A2(
+								elm$html$Html$div,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('4-6+')
+									]),
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$button,
+										_List_fromArray(
+											[
+												elm$html$Html$Events$onClick(
+												author$project$Main$Concat('4')),
+												elm$html$Html$Attributes$class('numButton')
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text('4')
+											])),
+										A2(
+										elm$html$Html$button,
+										_List_fromArray(
+											[
+												elm$html$Html$Events$onClick(
+												author$project$Main$Concat('5')),
+												elm$html$Html$Attributes$class('numButton')
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text('5')
+											])),
+										A2(
+										elm$html$Html$button,
+										_List_fromArray(
+											[
+												elm$html$Html$Events$onClick(
+												author$project$Main$Concat('6')),
+												elm$html$Html$Attributes$class('numButton')
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text('6')
+											])),
+										A2(
+										elm$html$Html$button,
+										_List_fromArray(
+											[
+												elm$html$Html$Events$onClick(author$project$Main$Sumar),
+												elm$html$Html$Attributes$class('opButton')
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text('+')
+											]))
+									])),
+								A2(
+								elm$html$Html$div,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('1-3=')
+									]),
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$button,
+										_List_fromArray(
+											[
+												elm$html$Html$Events$onClick(
+												author$project$Main$Concat('1')),
+												elm$html$Html$Attributes$class('numButton')
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text('1')
+											])),
+										A2(
+										elm$html$Html$button,
+										_List_fromArray(
+											[
+												elm$html$Html$Events$onClick(
+												author$project$Main$Concat('2')),
+												elm$html$Html$Attributes$class('numButton')
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text('2')
+											])),
+										A2(
+										elm$html$Html$button,
+										_List_fromArray(
+											[
+												elm$html$Html$Events$onClick(
+												author$project$Main$Concat('3')),
+												elm$html$Html$Attributes$class('numButton')
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text('3')
+											])),
+										A2(
+										elm$html$Html$button,
+										_List_fromArray(
+											[
+												elm$html$Html$Events$onClick(author$project$Main$Calcular),
+												elm$html$Html$Attributes$class('opButton')
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text('=')
+											]))
+									])),
+								A2(
+								elm$html$Html$div,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('0_reset')
+									]),
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$button,
+										_List_fromArray(
+											[
+												elm$html$Html$Events$onClick(
+												author$project$Main$Concat('0')),
+												elm$html$Html$Attributes$class('numButton')
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text('0')
+											])),
+										A2(
+										elm$html$Html$button,
+										_List_fromArray(
+											[
+												elm$html$Html$Events$onClick(author$project$Main$Resetear),
+												elm$html$Html$Attributes$class('resetButton')
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text('AC')
+											]))
+									]))
+							]))
 					]))
 			]));
 };
