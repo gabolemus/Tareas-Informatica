@@ -1,0 +1,130 @@
+body{
+    background: #d3d2d2;
+}
+
+.main-div{
+    margin-top: 35px;
+    margin: 10;
+    padding: 0 20px;
+}
+
+.main-div input{
+    display: none;
+}
+
+.divText{
+    font-family: Tahoma;
+    font-weight: 550;
+    font-size: 25px;
+    padding: 10px;
+    background: #333;
+    color: #ccc;
+    border-radius: 12px;
+    border: 10px;
+    text-align: center;
+    display: inline-block;
+}
+
+.main-div label{
+    font-family: Tahoma;
+    font-size: 20px;
+    display: inline-block;
+    padding: 6px 0 6px 0;
+    margin: 0px 2px;
+    width: 33%; 
+    text-align: center;
+    background: rgb(165, 164, 164);
+    color: #000;
+    border-radius: 10px;
+}
+
+.main-div label:hover{
+    cursor: pointer;
+    color: white;
+    background: rgb(68, 92, 201);
+    border-radius: 10px;
+}
+
+.main-div input:checked + label{
+    background: #333;
+    color: white;
+    border-radius: 10px;
+}
+
+.main-div #tab1:checked ~ .content #fractal1,
+.main-div #tab2:checked ~ .content #fractal2,
+.main-div #tab3:checked ~ .content #fractal3{
+    display: block;
+}
+
+.main-div .content > div{
+    display: none;
+    padding-top: 20px;
+    text-align: left;
+    overflow: auto;
+}
+
+.fractal-div{
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-bottom: 125px;
+}
+
+.counter{
+    margin-top: 50px;
+    text-align: center;
+    font-size: 20px;
+    font-family: Tahoma;
+    font-weight: 500;
+}
+
+.iterationText{
+    color: black;
+    position: relative;
+}
+
+.svgWindow{
+    display: block;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.control-buttons{
+    margin: 50px 0 0 0;
+    text-align: center;
+}
+
+.control-buttons input{
+    color: #000;
+    width: 20px;
+    height: 25px;
+    margin: 0 5px;
+    font-size: 20px;
+    text-align: center;
+    vertical-align: middle;
+    border: none;
+    border-radius: 5px;
+    border-color: rgb(165, 165, 165);
+    background: none;
+    font-family: Tahoma;
+    display: inline-block;
+}
+
+.fractalButton{
+    background-color: #333;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    margin: 0 2px;
+    border-radius: 7px;
+}
+
+.control-buttons button:last-child{
+    border-radius: 0;
+    margin-left: 50px;
+}
+
+.fractalButton:hover{
+    background: red;
+    color: white;
+}
