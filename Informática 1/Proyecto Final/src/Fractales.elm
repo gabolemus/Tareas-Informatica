@@ -139,7 +139,7 @@ kochPoints nivel punto1 punto2 =
             [ punto1, punto2 ]
 
 puntosKoch : Int -> PointXY -> PointXY -> List (Float, Float)
-puntosKoch lvl punto1 punto2 = listPointsToListFloat (noDuplicates (kochPoints lvl punto1 punto2))
+puntosKoch nivel punto1 punto2 = listPointsToListFloat (noDuplicates (kochPoints nivel punto1 punto2))
 
 snowflake : Int -> List (Float, Float)
 snowflake nivel = 
