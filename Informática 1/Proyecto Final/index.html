@@ -4499,6 +4499,7 @@ var author$project$Fractales$divideSquare = F5(
 									A5(author$project$Fractales$divideSquare, x + (len / 3), y + (2 * (len / 3)), len / 3, lvl + 1, max),
 									A5(author$project$Fractales$divideSquare, x + (2 * (len / 3)), y + (2 * (len / 3)), len / 3, lvl + 1, max)))))))));
 	});
+var author$project$Fractales$length = 300;
 var elm$core$Basics$apR = F2(
 	function (x, f) {
 		return f(x);
@@ -4865,16 +4866,14 @@ var author$project$Fractales$PointXY = F2(
 	function (x, y) {
 		return {x: x, y: y};
 	});
-var author$project$Fractales$triangleLength = 300;
-var author$project$Fractales$p1 = A2(author$project$Fractales$PointXY, (500 - author$project$Fractales$triangleLength) / 2, 135);
-var author$project$Fractales$squareLength = 300;
+var author$project$Fractales$p1 = A2(author$project$Fractales$PointXY, (500 - author$project$Fractales$length) / 2, 135);
 var author$project$Fractales$mengerSponge = function (num) {
 	if (!num) {
 		return author$project$Fractales$listOfRoundedLists(
-			A5(author$project$Fractales$divideSquare, author$project$Fractales$p1.x, author$project$Fractales$p1.y, author$project$Fractales$squareLength, 0, 0));
+			A5(author$project$Fractales$divideSquare, author$project$Fractales$p1.x, author$project$Fractales$p1.y, author$project$Fractales$length, 0, 0));
 	} else {
 		return author$project$Fractales$listOfRoundedLists(
-			A5(author$project$Fractales$divideSquare, author$project$Fractales$p1.x, author$project$Fractales$p1.y, author$project$Fractales$squareLength, 0, num));
+			A5(author$project$Fractales$divideSquare, author$project$Fractales$p1.x, author$project$Fractales$p1.y, author$project$Fractales$length, 0, num));
 	}
 };
 var author$project$Fractales$pointToString = function (point) {
@@ -4886,20 +4885,12 @@ var author$project$Fractales$pointsToString = function (list) {
 	if (!list.b) {
 		return '';
 	} else {
-		if (!list.b.b) {
-			var _n1 = list.a;
-			var x = _n1.a;
-			var y = _n1.b;
-			return author$project$Fractales$pointToString(
-				_Utils_Tuple2(x, y));
-		} else {
-			var _n2 = list.a;
-			var x = _n2.a;
-			var y = _n2.b;
-			var xys = list.b;
-			return author$project$Fractales$pointToString(
-				_Utils_Tuple2(x, y)) + (' ' + author$project$Fractales$pointsToString(xys));
-		}
+		var _n1 = list.a;
+		var x = _n1.a;
+		var y = _n1.b;
+		var xys = list.b;
+		return author$project$Fractales$pointToString(
+			_Utils_Tuple2(x, y)) + (' ' + author$project$Fractales$pointsToString(xys));
 	}
 };
 var elm$core$Basics$pi = _Basics_pi;
@@ -4935,16 +4926,121 @@ var author$project$Fractales$divide = F5(
 					lvl + 1,
 					max)));
 	});
-var author$project$Fractales$t1 = A2(author$project$Fractales$PointXY, (500 - author$project$Fractales$triangleLength) / 2, 350);
+var author$project$Fractales$t1 = A2(author$project$Fractales$PointXY, (500 - author$project$Fractales$length) / 2, 350);
 var author$project$Fractales$sierpinski = function (num) {
 	if (!num) {
 		return author$project$Fractales$listOfRoundedLists(
-			A5(author$project$Fractales$divide, author$project$Fractales$t1.x, author$project$Fractales$t1.y, author$project$Fractales$triangleLength, 0, 0));
+			A5(author$project$Fractales$divide, author$project$Fractales$t1.x, author$project$Fractales$t1.y, author$project$Fractales$length, 0, 0));
 	} else {
 		return author$project$Fractales$listOfRoundedLists(
-			A5(author$project$Fractales$divide, author$project$Fractales$t1.x, author$project$Fractales$t1.y, author$project$Fractales$triangleLength, 0, num));
+			A5(author$project$Fractales$divide, author$project$Fractales$t1.x, author$project$Fractales$t1.y, author$project$Fractales$length, 0, num));
 	}
 };
+var author$project$Fractales$add = F2(
+	function (a, b) {
+		return A2(author$project$Fractales$PointXY, a.x + b.x, a.y + b.y);
+	});
+var author$project$Fractales$mult = F2(
+	function (num, point) {
+		return A2(author$project$Fractales$PointXY, num * point.x, num * point.y);
+	});
+var author$project$Fractales$sub = F2(
+	function (a, b) {
+		return A2(
+			author$project$Fractales$add,
+			a,
+			A2(author$project$Fractales$mult, -1, b));
+	});
+var elm$core$Basics$sqrt = _Basics_sqrt;
+var author$project$Fractales$kochCurveAux = F2(
+	function (punto1, punto2) {
+		var distanciaXY = A2(author$project$Fractales$sub, punto2, punto1);
+		return _List_fromArray(
+			[
+				punto1,
+				A2(
+				author$project$Fractales$add,
+				punto1,
+				A2(author$project$Fractales$mult, 1 / 3, distanciaXY)),
+				A2(
+				author$project$Fractales$add,
+				punto1,
+				A2(
+					author$project$Fractales$add,
+					A2(author$project$Fractales$mult, 1 / 2, distanciaXY),
+					A2(
+						author$project$Fractales$mult,
+						elm$core$Basics$sqrt(3) / 6,
+						A2(author$project$Fractales$PointXY, distanciaXY.y, (-1) * distanciaXY.x)))),
+				A2(
+				author$project$Fractales$add,
+				punto1,
+				A2(author$project$Fractales$mult, 2 / 3, distanciaXY)),
+				punto2
+			]);
+	});
+var author$project$Fractales$listPointsToListFloat = function (list) {
+	if (!list.b) {
+		return _List_Nil;
+	} else {
+		var punto = list.a;
+		var resto = list.b;
+		return A2(
+			elm$core$List$cons,
+			_Utils_Tuple2(punto.x, punto.y),
+			author$project$Fractales$listPointsToListFloat(resto));
+	}
+};
+var author$project$Fractales$kochCurve = F2(
+	function (punto1, punto2) {
+		return author$project$Fractales$listPointsToListFloat(
+			A2(author$project$Fractales$kochCurveAux, punto1, punto2));
+	});
+var author$project$Fractales$applyKochCurve = function (list) {
+	if (!list.b) {
+		return _List_Nil;
+	} else {
+		if (!list.b.b) {
+			var x = list.a;
+			return author$project$Fractales$listPointsToListFloat(
+				_List_fromArray(
+					[x]));
+		} else {
+			var x = list.a;
+			var _n1 = list.b;
+			var y = _n1.a;
+			var xys = _n1.b;
+			return _Utils_ap(
+				A2(author$project$Fractales$kochCurve, x, y),
+				author$project$Fractales$applyKochCurve(
+					A2(elm$core$List$cons, y, xys)));
+		}
+	}
+};
+var author$project$Fractales$listFloatsToPointXY = function (list) {
+	if (!list.b) {
+		return _List_Nil;
+	} else {
+		var _n1 = list.a;
+		var a = _n1.a;
+		var b = _n1.b;
+		var abs = list.b;
+		return A2(
+			elm$core$List$cons,
+			A2(author$project$Fractales$PointXY, a, b),
+			author$project$Fractales$listFloatsToPointXY(abs));
+	}
+};
+var author$project$Fractales$listOfPoints = F2(
+	function (punto1, punto2) {
+		return _Utils_ap(
+			author$project$Fractales$listPointsToListFloat(
+				_List_fromArray(
+					[punto1])),
+			author$project$Fractales$listPointsToListFloat(
+				_List_fromArray(
+					[punto2])));
+	});
 var author$project$Fractales$noDuplicates = function (list) {
 	noDuplicates:
 	while (true) {
@@ -4975,7 +5071,7 @@ var author$project$Fractales$noDuplicates = function (list) {
 		}
 	}
 };
-var author$project$Fractales$p2 = A2(author$project$Fractales$PointXY, (500 - author$project$Fractales$triangleLength) * 2, 135);
+var author$project$Fractales$p2 = A2(author$project$Fractales$PointXY, (500 - author$project$Fractales$length) * 2, 135);
 var author$project$Fractales$p3 = A2(
 	author$project$Fractales$PointXY,
 	((author$project$Fractales$p2.x - author$project$Fractales$p1.x) / 2) + author$project$Fractales$p1.x,
@@ -5021,162 +5117,18 @@ var author$project$Fractales$pop = function (list) {
 		author$project$Fractales$removeFirst(
 			elm$core$List$reverse(list)));
 };
-var author$project$Fractales$add = F2(
-	function (a, b) {
-		return A2(author$project$Fractales$PointXY, a.x + b.x, a.y + b.y);
-	});
-var author$project$Fractales$mult = F2(
-	function (num, point) {
-		return A2(author$project$Fractales$PointXY, num * point.x, num * point.y);
-	});
-var author$project$Fractales$sub = F2(
-	function (a, b) {
-		return A2(
-			author$project$Fractales$add,
-			a,
-			A2(author$project$Fractales$mult, -1, b));
-	});
-var elm$core$Basics$sqrt = _Basics_sqrt;
-var elm$core$List$foldrHelper = F4(
-	function (fn, acc, ctr, ls) {
-		if (!ls.b) {
-			return acc;
-		} else {
-			var a = ls.a;
-			var r1 = ls.b;
-			if (!r1.b) {
-				return A2(fn, a, acc);
-			} else {
-				var b = r1.a;
-				var r2 = r1.b;
-				if (!r2.b) {
-					return A2(
-						fn,
-						a,
-						A2(fn, b, acc));
-				} else {
-					var c = r2.a;
-					var r3 = r2.b;
-					if (!r3.b) {
-						return A2(
-							fn,
-							a,
-							A2(
-								fn,
-								b,
-								A2(fn, c, acc)));
-					} else {
-						var d = r3.a;
-						var r4 = r3.b;
-						var res = (ctr > 500) ? A3(
-							elm$core$List$foldl,
-							fn,
-							acc,
-							elm$core$List$reverse(r4)) : A4(elm$core$List$foldrHelper, fn, acc, ctr + 1, r4);
-						return A2(
-							fn,
-							a,
-							A2(
-								fn,
-								b,
-								A2(
-									fn,
-									c,
-									A2(fn, d, res))));
-					}
-				}
-			}
-		}
-	});
-var elm$core$List$foldr = F3(
-	function (fn, acc, ls) {
-		return A4(elm$core$List$foldrHelper, fn, acc, 0, ls);
-	});
-var elm$core$List$append = F2(
-	function (xs, ys) {
-		if (!ys.b) {
-			return xs;
-		} else {
-			return A3(elm$core$List$foldr, elm$core$List$cons, ys, xs);
-		}
-	});
-var elm$core$List$concat = function (lists) {
-	return A3(elm$core$List$foldr, elm$core$List$append, _List_Nil, lists);
-};
-var elm$core$List$map2 = _List_map2;
-var elm$core$List$tail = function (list) {
-	if (list.b) {
-		var x = list.a;
-		var xs = list.b;
-		return elm$core$Maybe$Just(xs);
-	} else {
-		return elm$core$Maybe$Nothing;
-	}
-};
-var author$project$Fractales$kochPoints = F3(
-	function (nivel, punto1, punto2) {
-		var distancia = A2(author$project$Fractales$sub, punto2, punto1);
-		var camino = _List_fromArray(
-			[
-				punto1,
-				A2(
-				author$project$Fractales$add,
-				punto1,
-				A2(author$project$Fractales$mult, 1 / 3, distancia)),
-				A2(
-				author$project$Fractales$add,
-				punto1,
-				A2(
-					author$project$Fractales$add,
-					A2(author$project$Fractales$mult, 1 / 2, distancia),
-					A2(
-						author$project$Fractales$mult,
-						elm$core$Basics$sqrt(3) / 6,
-						A2(author$project$Fractales$PointXY, distancia.y, (-1) * distancia.x)))),
-				A2(
-				author$project$Fractales$add,
-				punto1,
-				A2(author$project$Fractales$mult, 2 / 3, distancia)),
-				punto2
-			]);
-		return (nivel > 0) ? elm$core$List$concat(
-			A3(
-				elm$core$List$map2,
-				author$project$Fractales$kochPoints(nivel - 1),
-				camino,
-				A2(
-					elm$core$Maybe$withDefault,
-					_List_Nil,
-					elm$core$List$tail(camino)))) : _List_fromArray(
-			[punto1, punto2]);
-	});
-var author$project$Fractales$listPointsToListFloat = function (list) {
-	if (!list.b) {
-		return _List_Nil;
-	} else {
-		var punto = list.a;
-		var resto = list.b;
-		return A2(
-			elm$core$List$cons,
-			_Utils_Tuple2(punto.x, punto.y),
-			author$project$Fractales$listPointsToListFloat(resto));
-	}
-};
-var author$project$Fractales$puntosKoch = F3(
-	function (lvl, punto1, punto2) {
-		return author$project$Fractales$listPointsToListFloat(
-			author$project$Fractales$noDuplicates(
-				A3(author$project$Fractales$kochPoints, lvl, punto1, punto2)));
-	});
-var author$project$Fractales$snowflake = function (nivel) {
-	return (nivel < 0) ? _List_Nil : author$project$Fractales$roundedList(
-		author$project$Fractales$pop(
-			author$project$Fractales$noDuplicates(
+var author$project$Fractales$snowflake = function (num) {
+	return (num < 0) ? _List_Nil : ((!num) ? author$project$Fractales$roundedList(
+		author$project$Fractales$noDuplicates(
+			_Utils_ap(
+				A2(author$project$Fractales$listOfPoints, author$project$Fractales$p1, author$project$Fractales$p2),
 				_Utils_ap(
-					A3(author$project$Fractales$puntosKoch, nivel, author$project$Fractales$p1, author$project$Fractales$p2),
-					_Utils_ap(
-						A3(author$project$Fractales$puntosKoch, nivel, author$project$Fractales$p2, author$project$Fractales$p3),
-						A3(author$project$Fractales$puntosKoch, nivel, author$project$Fractales$p3, author$project$Fractales$p1))))));
+					A2(author$project$Fractales$listOfPoints, author$project$Fractales$p2, author$project$Fractales$p3),
+					A2(author$project$Fractales$listOfPoints, author$project$Fractales$p3, author$project$Fractales$p1))))) : author$project$Fractales$pop(
+		author$project$Fractales$roundedList(
+			author$project$Fractales$applyKochCurve(
+				author$project$Fractales$listFloatsToPointXY(
+					author$project$Fractales$snowflake(num - 1))))));
 };
 var author$project$Fractales$init = A9(
 	author$project$Fractales$Model,
@@ -5551,6 +5503,7 @@ var elm$core$List$length = function (xs) {
 		0,
 		xs);
 };
+var elm$core$List$map2 = _List_map2;
 var elm$core$List$rangeHelp = F3(
 	function (lo, hi, list) {
 		rangeHelp:
@@ -5829,6 +5782,61 @@ var elm$html$Html$Events$stopPropagationOn = F2(
 			elm$virtual_dom$VirtualDom$on,
 			event,
 			elm$virtual_dom$VirtualDom$MayStopPropagation(decoder));
+	});
+var elm$core$List$foldrHelper = F4(
+	function (fn, acc, ctr, ls) {
+		if (!ls.b) {
+			return acc;
+		} else {
+			var a = ls.a;
+			var r1 = ls.b;
+			if (!r1.b) {
+				return A2(fn, a, acc);
+			} else {
+				var b = r1.a;
+				var r2 = r1.b;
+				if (!r2.b) {
+					return A2(
+						fn,
+						a,
+						A2(fn, b, acc));
+				} else {
+					var c = r2.a;
+					var r3 = r2.b;
+					if (!r3.b) {
+						return A2(
+							fn,
+							a,
+							A2(
+								fn,
+								b,
+								A2(fn, c, acc)));
+					} else {
+						var d = r3.a;
+						var r4 = r3.b;
+						var res = (ctr > 500) ? A3(
+							elm$core$List$foldl,
+							fn,
+							acc,
+							elm$core$List$reverse(r4)) : A4(elm$core$List$foldrHelper, fn, acc, ctr + 1, r4);
+						return A2(
+							fn,
+							a,
+							A2(
+								fn,
+								b,
+								A2(
+									fn,
+									c,
+									A2(fn, d, res))));
+					}
+				}
+			}
+		}
+	});
+var elm$core$List$foldr = F3(
+	function (fn, acc, ls) {
+		return A4(elm$core$List$foldrHelper, fn, acc, 0, ls);
 	});
 var elm$json$Json$Decode$field = _Json_decodeField;
 var elm$json$Json$Decode$at = F2(

@@ -19,6 +19,12 @@ listPointsToListFloat list =
         [] -> []
         punto :: resto -> ( punto.x, punto.y ) :: listPointsToListFloat resto
 
+listFloatsToPointXY : List (Float, Float) -> List PointXY
+listFloatsToPointXY list =
+    case list of
+        [] -> []
+        (a,b) :: abs -> (PointXY a b) :: listFloatsToPointXY (abs)
+
 pointToString : (Float, Float) -> String
 pointToString point =
     case point of
@@ -28,7 +34,6 @@ pointsToString : List (Float, Float) -> String
 pointsToString list =
     case list of
         [] -> ""
-        [(x,y)] -> pointToString (x, y)
         (x, y) :: xys -> pointToString (x, y) ++ " " ++ pointsToString xys
 
 firstElementOfList : List (Float, Float) -> (Float, Float)
@@ -95,15 +100,14 @@ listOfListsToPolylines num list =
 
 -- Copo de Nieve de Koch -- =============================================================================================================================================================
 
-triangleLength = 300
-squareLength = 300
+length = 300
 
-p1 = PointXY ((500 - triangleLength) / 2) 135
-p2 = PointXY ((500 - triangleLength) * 2) 135
+p1 = PointXY ((500 - length) / 2) 135
+p2 = PointXY ((500 - length) * 2) 135
 p3 = PointXY (((p2.x - p1.x) / 2) + p1.x) (p1.y + ((p2.x - p1.x) * sin (pi / 3)))
 
-t1 = PointXY ((500 - triangleLength) / 2) 350
-t2 = PointXY ((500 - triangleLength) * 2) 350
+t1 = PointXY ((500 - length) / 2) 350
+t2 = PointXY ((500 - length) * 2) 350
 t3 = PointXY (((p2.x - p1.x) / 2) + p1.x) (p1.y + ((p2.x - p1.x) * sin (pi / 3)))
 
 add : PointXY -> PointXY -> PointXY
@@ -115,36 +119,39 @@ mult num point = PointXY (num * point.x) (num * point.y)
 sub : PointXY -> PointXY -> PointXY
 sub a b = mult -1 b |> add a
 
-kochPoints : Int -> PointXY -> PointXY -> List PointXY
-kochPoints nivel punto1 punto2 =
+kochCurveAux : PointXY -> PointXY -> List (PointXY)
+kochCurveAux punto1 punto2 =
     let
-        distancia = sub punto2 punto1
-
-        camino =
-            [ punto1
-            , add punto1 <| mult (1 / 3) distancia
-            , add punto1 <| add (mult (1 / 2) distancia) (mult (sqrt 3 / 6) <| PointXY distancia.y (-1 * distancia.x))
-            , add punto1 <| mult (2 / 3) distancia
-            , punto2
-            ]
+        distanciaXY = sub punto2 punto1
     in
-        if nivel > 0 then
-            List.map2
-                (kochPoints (nivel - 1))
-                camino
-                (List.tail camino |> Maybe.withDefault [])
-                |> List.concat
+        [
+            punto1
+            , add punto1 <| mult (1 / 3) distanciaXY
+            , add punto1 <| add (mult (1 / 2) distanciaXY) (mult (sqrt 3 / 6) <| PointXY distanciaXY.y (-1 * distanciaXY.x))
+            , add punto1 <| mult (2 / 3) distanciaXY
+            , punto2
+        ]
+            
+kochCurve : PointXY -> PointXY -> List (Float, Float)
+kochCurve punto1 punto2 =
+    kochCurveAux punto1 punto2 |> listPointsToListFloat
 
-        else
-            [ punto1, punto2 ]
+applyKochCurve : List PointXY -> List (Float, Float)
+applyKochCurve list =
+    case list of
+        [] -> []
+        [x] -> listPointsToListFloat [x]
+        x :: y :: xys -> (kochCurve x y) ++ applyKochCurve (y :: xys)
 
-puntosKoch : Int -> PointXY -> PointXY -> List (Float, Float)
-puntosKoch nivel punto1 punto2 = listPointsToListFloat (noDuplicates (kochPoints nivel punto1 punto2))
+listOfPoints : PointXY -> PointXY -> List (Float, Float)
+listOfPoints punto1 punto2 =
+    (listPointsToListFloat [punto1]) ++ (listPointsToListFloat [punto2])
 
 snowflake : Int -> List (Float, Float)
-snowflake nivel = 
-    if nivel < 0 then []
-    else (puntosKoch nivel p1 p2 ++ puntosKoch nivel p2 p3 ++ puntosKoch nivel p3 p1) |> noDuplicates |> pop |> roundedList
+snowflake num =
+    if num < 0 then []
+    else if num == 0 then ((listOfPoints p1 p2) ++ (listOfPoints p2 p3) ++ (listOfPoints p3 p1)) |> noDuplicates |> roundedList
+    else (snowflake (num - 1) |> listFloatsToPointXY |> applyKochCurve) |> roundedList |> pop
 
 -- Triángulo de Sierpinski -- =============================================================================================================================================================
 
@@ -166,8 +173,8 @@ divide x y len lvl max =
 sierpinski : Int -> List (List (Float, Float))
 sierpinski num =
     case num of
-        0 -> divide t1.x t1.y triangleLength 0 0 |> listOfRoundedLists
-        _ ->divide t1.x t1.y triangleLength 0 num |> listOfRoundedLists
+        0 -> divide t1.x t1.y length 0 0 |> listOfRoundedLists
+        _ ->divide t1.x t1.y length 0 num |> listOfRoundedLists
 
 -- Esponja de Menger -- =============================================================================================================================================================
 
@@ -195,10 +202,8 @@ divideSquare x y len lvl max =
 mengerSponge : Int -> List (List (Float, Float))
 mengerSponge num =
     case num of
-        0 -> divideSquare p1.x p1.y squareLength 0 0 |> listOfRoundedLists
-        _ -> divideSquare p1.x p1.y squareLength 0 num |> listOfRoundedLists
-
-
+        0 -> divideSquare p1.x p1.y length 0 0 |> listOfRoundedLists
+        _ -> divideSquare p1.x p1.y length 0 num |> listOfRoundedLists
 
 -- Web App -- ===========================================================================================================================================================================
 
