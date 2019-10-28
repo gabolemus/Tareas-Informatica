@@ -102,13 +102,11 @@ listOfListsToPolylines num list =
 
 length = 300
 
-p1 = PointXY ((500 - length) / 2) 135
-p2 = PointXY ((500 - length) * 2) 135
-p3 = PointXY (((p2.x - p1.x) / 2) + p1.x) (p1.y + ((p2.x - p1.x) * sin (pi / 3)))
+p1 = PointXY ((500 - length) / 2) 135 -- (100,135)
+p2 = PointXY ((500 - length) * 2) 135 -- (400,135)
+p3 = PointXY (((p2.x - p1.x) / 2) + p1.x) (p1.y + ((p2.x - p1.x) * sin (pi / 3))) -- (250,394.81)
 
-t1 = PointXY ((500 - length) / 2) 350
-t2 = PointXY ((500 - length) * 2) 350
-t3 = PointXY (((p2.x - p1.x) / 2) + p1.x) (p1.y + ((p2.x - p1.x) * sin (pi / 3)))
+t1 = PointXY ((500 - length) / 2) 350 -- (100,350)
 
 add : PointXY -> PointXY -> PointXY
 add a b = PointXY (a.x + b.x) (a.y + b.y)
@@ -217,8 +215,7 @@ determineNum caso num =
 type alias Model =
     { iterationKoch : Int, kochS : String, kochState : Bool
     , iterationSierpinski : Int, sierpinskiT : List (List (Float, Float)), sierpinskiState : Bool
-    , iterationMenger : Int, mengerS : List (List (Float, Float)), mengerState : Bool
-    }
+    , iterationMenger : Int, mengerS : List (List (Float, Float)), mengerState : Bool }
 
 type Msg
     = IncrementarKoch
@@ -236,7 +233,6 @@ type Msg
 
 init : Model
 init = Model 0 (pointsToString (listWithFirstElement (snowflake 0))) True 0 (sierpinski 0) False 0 (mengerSponge 0) False
-
 
 update : Msg -> Model -> Model
 update msg model =
