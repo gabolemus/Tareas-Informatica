@@ -170,9 +170,7 @@ divide x y len lvl max =
 
 sierpinski : Int -> List (List (Float, Float))
 sierpinski num =
-    case num of
-        0 -> divide t1.x t1.y length 0 0 |> listOfRoundedLists
-        _ ->divide t1.x t1.y length 0 num |> listOfRoundedLists
+    divide t1.x t1.y length 0 num |> listOfRoundedLists
 
 -- Esponja de Menger -- =============================================================================================================================================================
 
@@ -199,9 +197,7 @@ divideSquare x y len lvl max =
 
 mengerSponge : Int -> List (List (Float, Float))
 mengerSponge num =
-    case num of
-        0 -> divideSquare p1.x p1.y length 0 0 |> listOfRoundedLists
-        _ -> divideSquare p1.x p1.y length 0 num |> listOfRoundedLists
+    divideSquare p1.x p1.y length 0 num |> listOfRoundedLists
 
 -- Web App -- ===========================================================================================================================================================================
 

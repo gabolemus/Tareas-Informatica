@@ -4868,13 +4868,8 @@ var author$project$Fractales$PointXY = F2(
 	});
 var author$project$Fractales$p1 = A2(author$project$Fractales$PointXY, (500 - author$project$Fractales$length) / 2, 135);
 var author$project$Fractales$mengerSponge = function (num) {
-	if (!num) {
-		return author$project$Fractales$listOfRoundedLists(
-			A5(author$project$Fractales$divideSquare, author$project$Fractales$p1.x, author$project$Fractales$p1.y, author$project$Fractales$length, 0, 0));
-	} else {
-		return author$project$Fractales$listOfRoundedLists(
-			A5(author$project$Fractales$divideSquare, author$project$Fractales$p1.x, author$project$Fractales$p1.y, author$project$Fractales$length, 0, num));
-	}
+	return author$project$Fractales$listOfRoundedLists(
+		A5(author$project$Fractales$divideSquare, author$project$Fractales$p1.x, author$project$Fractales$p1.y, author$project$Fractales$length, 0, num));
 };
 var author$project$Fractales$pointToString = function (point) {
 	var a = point.a;
@@ -4928,13 +4923,8 @@ var author$project$Fractales$divide = F5(
 	});
 var author$project$Fractales$t1 = A2(author$project$Fractales$PointXY, (500 - author$project$Fractales$length) / 2, 350);
 var author$project$Fractales$sierpinski = function (num) {
-	if (!num) {
-		return author$project$Fractales$listOfRoundedLists(
-			A5(author$project$Fractales$divide, author$project$Fractales$t1.x, author$project$Fractales$t1.y, author$project$Fractales$length, 0, 0));
-	} else {
-		return author$project$Fractales$listOfRoundedLists(
-			A5(author$project$Fractales$divide, author$project$Fractales$t1.x, author$project$Fractales$t1.y, author$project$Fractales$length, 0, num));
-	}
+	return author$project$Fractales$listOfRoundedLists(
+		A5(author$project$Fractales$divide, author$project$Fractales$t1.x, author$project$Fractales$t1.y, author$project$Fractales$length, 0, num));
 };
 var author$project$Fractales$add = F2(
 	function (a, b) {
